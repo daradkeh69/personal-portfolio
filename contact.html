@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Me - Adam Daradkeh</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    // Tailwind configuration with light and dark mode colors
+    tailwind.config = {
+      darkMode: 'class', // Enable dark mode with class strategy
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#0ea5e9',
+              foreground: '#ffffff',
+            },
+            muted: {
+              DEFAULT: '#f1f5f9',
+              foreground: '#64748b',
+            },
+            border: '#e2e8f0',
+            input: '#e2e8f0',
+            ring: '#0ea5e9',
+            background: '#ffffff',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Basic transitions for smooth effects */
+    .transition-all { transition: all 0.3s ease; }
+    .transition-transform { transition: transform 0.3s ease; }
+    .transition-colors { transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
+    
+    /* Custom hover effects */
+    .group:hover .group-hover\:translate-x-1 { transform: translateX(0.25rem); }
+    .group:hover .group-hover\:translate-y-1 { transform: translateY(0.25rem); }
+    .group:hover .group-hover\:scale-105 { transform: scale(1.05); }
+    .group:hover .group-hover\:scale-110 { transform: scale(1.1); }
+    .group:hover .group-hover\:text-primary { color: #0ea5e9; }
+    .group:hover .group-hover\:bg-primary\/10 { background-color: rgba(14, 165, 233, 0.1); }
+    .group:hover .group-hover\:border-primary { border-color: #0ea5e9; }
+    .group:hover .group-hover\:shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+    
+    .hover\:underline:hover { text-decoration: underline; }
+    .hover\:bg-primary:hover { background-color: #0ea5e9; }
+    .hover\:text-primary-foreground:hover { color: #ffffff; }
+    .hover\:shadow-md:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+    .hover\:border-primary:hover { border-color: #0ea5e9; }
+    
+    /* Dark mode styles */
+    .dark {
+      color-scheme: dark;
+    }
+    
+    .dark body {
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
+    
+    .dark .bg-background {
+      background-color: #1e293b;
+    }
+    
+    .dark .bg-muted {
+      background-color: #1e293b;
+    }
+    
+    .dark .text-muted-foreground {
+      color: #94a3b8;
+    }
+    
+    .dark .border {
+      border-color: #334155;
+    }
+    
+    .dark .border-t {
+      border-color: #334155;
+    }
+    
+    .dark .shadow-sm {
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Animation keyframes */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    /* Animation classes */
+    .animate-fadeInUp {
+      animation: fadeInUp 1s ease forwards;
+    }
+    
+    .animate-fadeInLeft {
+      animation: fadeInLeft 1s ease forwards;
+    }
+    
+    .animate-fadeInRight {
+      animation: fadeInRight 1s ease forwards;
+    }
+    
+    .animate-pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    /* Scroll reveal */
+    [data-scroll] {
+      opacity: 0;
+    }
+    
+    /* Background pattern */
+    .bg-pattern {
+      background-color: #ffffff;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%230ea5e9' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    .dark .bg-pattern {
+      background-color: #0f172a;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%230ea5e9' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    /* Improved typography */
+    .text-gradient {
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      background-image: linear-gradient(to right, #0ea5e9, #3b82f6);
+    }
+    
+    .dark .text-gradient {
+      background-image: linear-gradient(to right, #0ea5e9, #38bdf8);
+    }
+    
+    /* Navigation styles */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #0ea5e9;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+    
+    .nav-link.active {
+      color: #0ea5e9;
+      font-weight: 500;
+    }
+    
+    /* Form input styles */
+    .form-input {
+      transition: all 0.3s ease;
+      border: 1px solid #e2e8f0;
+    }
+    
+    .form-input:focus {
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+    }
+    
+    .dark .form-input {
+      background-color: #1e293b;
+      border-color: #334155;
+    }
+    
+    .dark .form-input:focus {
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.3);
+    }
+    
+    /* Contact card styles */
+    .contact-card {
+      transition: all 0.3s ease;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-pattern text-foreground">
+  <!-- Header with navigation and dark mode toggle -->
+  <header class="sticky top-0 z-50 px-4 lg:px-6 h-16 flex items-center bg-background/80 backdrop-blur-sm border-b">
+    <a class="flex items-center justify-center" href="index.html">
+      <span class="font-bold text-xl text-gradient">Adam</span>
+    </a>
+    <nav class="ml-auto flex gap-4 sm:gap-6 items-center">
+      <a class="text-sm font-medium nav-link" href="index.html">Home</a>
+      <a class="text-sm font-medium nav-link" href="about.html">About</a>
+      <a class="text-sm font-medium nav-link active" href="contact.html">Contact</a>
+      <!-- Dark mode toggle button -->
+      <button id="theme-toggle" class="rounded-full p-2 transition-colors hover:bg-muted">
+        <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
+        <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
+        <span class="sr-only">Toggle theme</span>
+      </button>
+    </nav>
+  </header>
+  
+  <!-- Main content -->
+  <main class="flex-1">
+    <!-- Contact header section -->
+    <section class="w-full py-12 md:py-24 lg:py-32" data-scroll>
+      <div class="container px-4 md:px-6 mx-auto">
+        <div class="flex flex-col items-center justify-center space-y-4 text-center">
+          <div class="space-y-2">
+            <h1 class="text-3xl font-bold tracking-tighter sm:text-5xl text-gradient">Contact Me</h1>
+            <p class="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
+              Have a project in mind or want to discuss cybersecurity solutions? I'd love to hear from you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Contact information section -->
+    <section class="w-full py-12 md:py-24 lg:py-32 bg-background" data-scroll>
+      <div class="container px-4 md:px-6 mx-auto">
+        <div class="max-w-3xl mx-auto">
+          <!-- Contact information -->
+          <div class="space-y-8">
+            <div>
+              <h2 class="text-2xl font-bold mb-4">Contact Information</h2>
+              <p class="text-muted-foreground">Feel free to reach out through any of these channels. I'm always open to discussing new projects, opportunities, or just chatting about cybersecurity.</p>
+            </div>
+            
+            <!-- Contact cards -->
+            <div class="grid gap-6 md:grid-cols-2">
+              <!-- Email contact -->
+              <div class="contact-card rounded-lg border p-6 shadow-sm bg-background">
+                <div class="flex flex-col gap-3">
+                  <div class="rounded-full bg-primary/10 p-2 w-fit">
+                    <i data-lucide="mail" class="h-5 w-5 text-primary"></i>
+                  </div>
+                  <h3 class="font-semibold">Email</h3>
+                  <p class="text-sm text-muted-foreground">adampentest@outlook.com</p>
+                  <a href="mailto:adampentest@outlook.com" class="text-sm text-primary hover:underline">Send an email</a>
+                </div>
+              </div>
+              
+              <!-- LinkedIn contact -->
+              <div class="contact-card rounded-lg border p-6 shadow-sm bg-background">
+                <div class="flex flex-col gap-3">
+                  <div class="rounded-full bg-primary/10 p-2 w-fit">
+                    <i data-lucide="linkedin" class="h-5 w-5 text-primary"></i>
+                  </div>
+                  <h3 class="font-semibold">LinkedIn</h3>
+                  <p class="text-sm text-muted-foreground">Connect with me professionally</p>
+                  <a href="https://www.linkedin.com/in/adam-daradkeh-814980326/" target="_blank" rel="noopener noreferrer" class="text-sm text-primary hover:underline">View profile</a>
+                </div>
+              </div>
+              
+              <!-- GitHub contact -->
+              <div class="contact-card rounded-lg border p-6 shadow-sm bg-background">
+                <div class="flex flex-col gap-3">
+                  <div class="rounded-full bg-primary/10 p-2 w-fit">
+                    <i data-lucide="github" class="h-5 w-5 text-primary"></i>
+                  </div>
+                  <h3 class="font-semibold">GitHub</h3>
+                  <p class="text-sm text-muted-foreground">Check out my projects and code</p>
+                  <a href="https://github.com/daradkeh69" target="_blank" rel="noopener noreferrer" class="text-sm text-primary hover:underline">View repositories</a>
+                </div>
+              </div>
+              
+              <!-- Location -->
+              <div class="contact-card rounded-lg border p-6 shadow-sm bg-background">
+                <div class="flex flex-col gap-3">
+                  <div class="rounded-full bg-primary/10 p-2 w-fit">
+                    <i data-lucide="map-pin" class="h-5 w-5 text-primary"></i>
+                  </div>
+                  <h3 class="font-semibold">Location</h3>
+                  <p class="text-sm text-muted-foreground">Jordan, Amman</p>
+                  <p class="text-sm text-primary">Available for remote work worldwide</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Availability information -->
+            <div class="rounded-lg border p-6 shadow-sm bg-background">
+              <div class="flex items-start gap-4">
+                <div class="rounded-full bg-primary/10 p-2">
+                  <i data-lucide="clock" class="h-5 w-5 text-primary"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold">Availability</h3>
+                  <p class="text-sm text-muted-foreground mt-2">I'm currently available for freelance work and consulting. My typical response time is within 24 hours.</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Direct contact CTA -->
+            <div class="rounded-lg border p-6 shadow-sm bg-background text-center">
+              <div class="space-y-4">
+                <h3 class="font-semibold text-xl">Ready to work together?</h3>
+                <p class="text-muted-foreground">The best way to reach me is through email or LinkedIn. I look forward to discussing how I can help with your cybersecurity needs.</p>
+                <div class="flex justify-center gap-4 pt-2">
+                  <a href="mailto:adampentest@outlook.com" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90">
+                    Email Me
+                  </a>
+                  <a href="https://www.linkedin.com/in/adam-daradkeh-814980326/" target="_blank" rel="noopener noreferrer" class="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground">
+                    LinkedIn
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- FAQ section -->
+    <section class="w-full py-12 md:py-24 lg:py-32 bg-muted" data-scroll>
+      <div class="container px-4 md:px-6 mx-auto">
+        <div class="flex flex-col items-center justify-center space-y-4 text-center">
+          <div class="space-y-2">
+            <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl text-gradient">Frequently Asked Questions</h2>
+            <p class="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
+              Common questions about my services and expertise
+            </p>
+          </div>
+        </div>
+        
+        <div class="mx-auto max-w-3xl space-y-6 py-12">
+          <!-- FAQ item -->
+          <div class="rounded-lg border shadow-sm bg-background" data-scroll>
+            <button class="flex w-full items-center justify-between p-4 text-left font-medium">
+              <span>What cybersecurity services do you offer?</span>
+              <i data-lucide="chevron-down" class="h-5 w-5 text-muted-foreground"></i>
+            </button>
+            <div class="px-4 pb-4">
+              <p class="text-muted-foreground">
+                I specialize in penetration testing, vulnerability assessments, and security consulting for websites and digital systems. My goal is to identify security risks before malicious actors can exploit them, helping you protect your data and systems.
+              </p>
+            </div>
+          </div>
+          
+          <!-- FAQ item -->
+          <div class="rounded-lg border shadow-sm bg-background" data-scroll>
+            <button class="flex w-full items-center justify-between p-4 text-left font-medium">
+              <span>How do you approach a cybersecurity assessment?</span>
+              <i data-lucide="chevron-down" class="h-5 w-5 text-muted-foreground"></i>
+            </button>
+            <div class="px-4 pb-4">
+              <p class="text-muted-foreground">
+                I follow a methodical approach that includes reconnaissance, scanning, vulnerability assessment, exploitation (with permission), and detailed reporting with actionable recommendations. Each assessment is tailored to the specific needs and systems of the client.
+              </p>
+            </div>
+          </div>
+          
+          <!-- FAQ item -->
+          <div class="rounded-lg border shadow-sm bg-background" data-scroll>
+            <button class="flex w-full items-center justify-between p-4 text-left font-medium">
+              <span>Are you available for remote work?</span>
+              <i data-lucide="chevron-down" class="h-5 w-5 text-muted-foreground"></i>
+            </button>
+            <div class="px-4 pb-4">
+              <p class="text-muted-foreground">
+                Yes, I'm available for remote work worldwide. Most cybersecurity assessments can be conducted remotely, and I'm comfortable working with clients across different time zones.
+              </p>
+            </div>
+          </div>
+          
+          <!-- FAQ item -->
+          <div class="rounded-lg border shadow-sm bg-background" data-scroll>
+            <button class="flex w-full items-center justify-between p-4 text-left font-medium">
+              <span>How can I prepare for a security assessment?</span>
+              <i data-lucide="chevron-down" class="h-5 w-5 text-muted-foreground"></i>
+            </button>
+            <div class="px-4 pb-4">
+              <p class="text-muted-foreground">
+                To prepare for a security assessment, gather documentation about your systems, define the scope clearly, ensure proper authorization, prepare your team, and establish communication channels. I'll guide you through this process to ensure a smooth and effective assessment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Footer with copyright and social links -->
+  <footer class="w-full py-6 px-4 md:px-6 border-t">
+    <div class="container mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-muted-foreground">
+          © <script>document.write(new Date().getFullYear())</script> Adam Daradkeh. All rights reserved.
+        </p>
+        
+        <!-- Social links -->
+        <div class="flex items-center gap-4">
+          <a href="https://github.com/daradkeh69" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub">
+            <i data-lucide="github" class="h-5 w-5"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/adam-daradkeh-814980326/" target="_blank" rel="noopener noreferrer" class="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
+            <i data-lucide="linkedin" class="h-5 w-5"></i>
+          </a>
+          <a href="mailto:adampentest@outlook.com" class="text-muted-foreground hover:text-primary transition-colors" aria-label="Email">
+            <i data-lucide="mail" class="h-5 w-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Back to top button -->
+  <button id="back-to-top" class="back-to-top rounded-full bg-primary p-2 text-primary-foreground shadow-md hover:bg-primary/90 transition-all">
+    <i data-lucide="chevron-up" class="h-5 w-5"></i>
+    <span class="sr-only">Back to top</span>
+  </button>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+    
+    // Dark mode toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get the theme toggle button
+      const themeToggle = document.getElementById('theme-toggle');
+      
+      // Check for saved theme preference or use the system preference
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      // If the user has a saved preference, use that
+      if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      
+      // Toggle theme when the button is clicked
+      themeToggle.addEventListener('click', function() {
+        // Toggle dark class on the html element
+        document.documentElement.classList.toggle('dark');
+        
+        // Save the current preference to localStorage
+        if (document.documentElement.classList.contains('dark')) {
+          localStorage.setItem('theme', 'dark');
+        } else {
+          localStorage.setItem('theme', 'light');
+        }
+        
+        // Update icons
+        lucide.createIcons();
+      });
+      
+      // Back to top button functionality
+      const backToTopButton = document.getElementById('back-to-top');
+      
+      // Show/hide the button based on scroll position
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      });
+      
+      // Scroll to top when clicked
+      backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+      
+      // FAQ accordion functionality
+      const faqButtons = document.querySelectorAll('.rounded-lg.border button');
+      
+      faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const content = button.nextElementSibling;
+          const icon = button.querySelector('i');
+          
+          // Toggle content visibility
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            icon.style.transform = 'rotate(0deg)';
+          } else {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            icon.style.transform = 'rotate(180deg)';
+          }
+        });
+      });
+    });
+  </script>
+  
+  <!-- Add this CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.45/dist/lenis.min.js"></script> 
+
+  <script>
+    // Lenis Smooth Scroll Initialization
+    const lenis = new Lenis({
+      lerp: 0.07,  // Lower = smoother (0.1 is default)
+      smoothWheel: true,
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    
+    // Scroll reveal animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const scrollElements = document.querySelectorAll('[data-scroll]');
+      
+      const elementInView = (el, dividend = 1) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return (
+          elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+        );
+      };
+      
+      const displayScrollElement = (element) => {
+        element.classList.add('animate-fadeInUp');
+      };
+      
+      const handleScrollAnimation = () => {
+        scrollElements.forEach((el) => {
+          if (elementInView(el, 1.25)) {
+            displayScrollElement(el);
+          }
+        });
+      };
+      
+      // Initial check on page load
+      setTimeout(handleScrollAnimation, 100);
+      
+      // Check on scroll
+      window.addEventListener('scroll', () => {
+        handleScrollAnimation();
+      });
+    });
+  </script>
+</body>
+</html>
