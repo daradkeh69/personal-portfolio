@@ -1,732 +1,418 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Me - Adam Daradkeh</title>
+  <title>About - Adam Daradkeh</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
-    // Tailwind configuration with light and dark mode colors
     tailwind.config = {
-      darkMode: 'class', // Enable dark mode with class strategy
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
             primary: {
-              DEFAULT: '#0ea5e9',
-              foreground: '#ffffff',
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              900: '#164e63',
             },
-            muted: {
-              DEFAULT: '#f1f5f9',
-              foreground: '#64748b',
+            accent: {
+              500: '#8b5cf6',
+              600: '#7c3aed',
             },
-            border: '#e2e8f0',
-            input: '#e2e8f0',
-            ring: '#0ea5e9',
-            background: '#ffffff',
+            neutral: {
+              50: '#fafafa',
+              100: '#f5f5f5',
+              800: '#262626',
+              900: '#171717',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.6s ease-out',
+            'slide-up': 'slideUp 0.6s ease-out',
+            'progress': 'progress 2s ease-out',
           }
         }
       }
     }
   </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Basic transitions for smooth effects */
-    .transition-all { transition: all 0.3s ease; }
-    .transition-transform { transition: transform 0.3s ease; }
-    .transition-colors { transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
-    
-    /* Custom hover effects */
-    .group:hover .group-hover\:translate-x-1 { transform: translateX(0.25rem); }
-    .group:hover .group-hover\:translate-y-1 { transform: translateY(0.25rem); }
-    .group:hover .group-hover\:scale-105 { transform: scale(1.05); }
-    .group:hover .group-hover\:scale-110 { transform: scale(1.1); }
-    .group:hover .group-hover\:text-primary { color: #0ea5e9; }
-    .group:hover .group-hover\:bg-primary\/10 { background-color: rgba(14, 165, 233, 0.1); }
-    .group:hover .group-hover\:border-primary { border-color: #0ea5e9; }
-    .group:hover .group-hover\:shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
-    
-    .hover\:underline:hover { text-decoration: underline; }
-    .hover\:bg-primary:hover { background-color: #0ea5e9; }
-    .hover\:text-primary-foreground:hover { color: #ffffff; }
-    .hover\:shadow-md:hover { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
-    .hover\:border-primary:hover { border-color: #0ea5e9; }
-    
-    /* Dark mode styles */
-    .dark {
-      color-scheme: dark;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
-    
-    .dark body {
-      background-color: #0f172a;
-      color: #f8fafc;
-    }
-    
-    .dark .bg-background {
-      background-color: #1e293b;
-    }
-    
-    .dark .bg-muted {
-      background-color: #1e293b;
-    }
-    
-    .dark .text-muted-foreground {
-      color: #94a3b8;
-    }
-    
-    .dark .border {
-      border-color: #334155;
-    }
-    
-    .dark .border-t {
-      border-color: #334155;
-    }
-    
-    .dark .shadow-sm {
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Animation keyframes */
-    @keyframes fadeInUp {
+    @keyframes slideUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    
-    @keyframes fadeInLeft {
-      from { opacity: 0; transform: translateX(-30px); }
-      to { opacity: 1; transform: translateX(0); }
+    @keyframes progress {
+      from { width: 0; }
     }
-    
-    @keyframes fadeInRight {
-      from { opacity: 0; transform: translateX(30px); }
-      to { opacity: 1; transform: translateX(0); }
+    .gradient-bg {
+      background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
     }
-    
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    
-    /* Animation classes */
-    .animate-fadeInUp {
-      animation: fadeInUp 1s ease forwards;
-    }
-    
-    .animate-fadeInLeft {
-      animation: fadeInLeft 1s ease forwards;
-    }
-    
-    .animate-fadeInRight {
-      animation: fadeInRight 1s ease forwards;
-    }
-    
-    .animate-pulse {
-      animation: pulse 2s infinite;
-    }
-    
-    /* Scroll reveal */
-    [data-scroll] {
-      opacity: 0;
-    }
-    
-    /* Skill bar styles */
-    .skill-bar {
-      height: 8px;
-      border-radius: 4px;
-      background-color: #e2e8f0;
-      overflow: hidden;
-    }
-    
-    .skill-progress {
-      height: 100%;
-      border-radius: 4px;
-      background-color: #0ea5e9;
-      transition: width 1.5s ease;
-    }
-    
-    .dark .skill-bar {
-      background-color: #334155;
-    }
-    
-    /* Background pattern */
-    .bg-pattern {
-      background-color: #ffffff;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%230ea5e9' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    
-    .dark .bg-pattern {
-      background-color: #0f172a;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%230ea5e9' fill-opacity='0.1'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    
-    /* Back to top button */
-    .back-to-top {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 99;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-    
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    /* Improved typography */
     .text-gradient {
-      background-clip: text;
+      background: linear-gradient(135deg, #06b6d4, #8b5cf6);
       -webkit-background-clip: text;
-      color: transparent;
-      background-image: linear-gradient(to right, #0ea5e9, #3b82f6);
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-    
-    .dark .text-gradient {
-      background-image: linear-gradient(to right, #0ea5e9, #38bdf8);
+    .glass {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
-    
-    /* Profile image frame */
-    .profile-frame {
-      position: relative;
-      padding: 10px;
-      border-radius: 16px;
-      background: linear-gradient(145deg, #0ea5e9, #3b82f6);
-      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
+    .dark .glass {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-    
-    .dark .profile-frame {
-      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+    .skill-bar {
+      animation: progress 2s ease-out;
     }
   </style>
 </head>
 
-<body class="flex flex-col min-h-screen bg-pattern text-foreground">
-  <!-- Header with navigation and dark mode toggle -->
-  <header class="sticky top-0 z-50 px-4 lg:px-6 h-16 flex items-center bg-background/80 backdrop-blur-sm border-b">
-    <a class="flex items-center justify-center" href="index.html">
-      <span class="font-bold text-xl text-gradient">Adam</span>
-    </a>
-    <nav class="ml-auto flex gap-4 sm:gap-6 items-center">
-      <a class="text-sm font-medium hover:underline underline-offset-4" href="index.html">Home</a>
-      <a class="text-sm font-medium text-primary hover:underline underline-offset-4" href="about.html">About</a>
-      <a class="text-sm font-medium hover:underline underline-offset-4" href="contact.html">Contact</a>
-      <!-- Dark mode toggle button -->
-      <button id="theme-toggle" class="rounded-full p-2 transition-colors hover:bg-muted">
-        <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
-        <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
-        <span class="sr-only">Toggle theme</span>
-      </button>
-    </nav>
-  </header>
-  
-  <!-- Main content -->
-  <main class="flex-1">
-    <!-- About me section -->
-    <section class="w-full py-12 md:py-24 lg:py-32" data-scroll>
-      <div class="container px-4 md:px-6 mx-auto">
-        <div class="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-          <!-- Text content -->
-          <div class="flex flex-col justify-center space-y-4">
-            <div class="space-y-2">
-              <h1 class="text-3xl font-bold tracking-tighter sm:text-5xl text-gradient">About Me</h1>
-            </div>
-            <!-- Bio paragraphs -->
-            <div class="space-y-4">
-              <p class="text-lg">
-                Hello! I'm <span class="font-bold text-primary">Adam Daradkeh</span>, a passionate and driven IT student currently studying BTEC IT in Jordan, with plans to continue my education outside my country after finishing school. 
-                I'm deeply interested in cybersecurity, ethical hacking, and competitive Capture The Flag (CTF) challenges—especially in areas 
-                like OSINT and web exploitation. I've already made strong progress on platforms like Hack The Box, and 
-                I've qualified for the National Cyber Security Competition finals in Jordan (NCSC).
-              </p>
-              <p>
-                I've completed courses like CompTIA A+ and Security+, and even though I don't yet have a university certificate, 
-                I've gained hands-on skills through self-study, personal projects, and real-world problem solving. 
-                My goal is to turn my cybersecurity skills into a business—offering penetration testing and vulnerability assessments for local companies to help them secure their digital presence.
-              </p>
-              <p>
-                I'm also someone who thinks long-term. I've got a vision for financial independence and building a better future, 
-                and I'm always exploring ways to grow—whether it's by learning something new, entering competitions, 
-                or thinking about how to start my own cybersecurity company.
-              </p>
-            </div>
-            <!-- Call to action buttons -->
-            <div class="flex flex-col gap-2 min-[400px]:flex-row pt-4">
-              <a href="contact.html" class="group inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90">
-                Get in Touch
-                <i data-lucide="arrow-right" class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"></i>
-              </a>
-              <button class="group inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground">
-                Download Resume
-                <i data-lucide="download" class="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1"></i>
-              </button>
-            </div>
-          </div>
-          <!-- Profile image -->
-          <div class="flex items-center justify-center">
-            <div class="profile-frame">
-              <div class="relative h-[450px] w-[350px] overflow-hidden rounded-xl bg-muted">
-                <img src="img/CTF.jpeg" alt="Profile Picture" class="h-full w-full object-cover" />
-                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                  <div class="text-white font-bold">Adam Daradkeh</div>
-                  <div class="text-white/80 text-sm">19/DEC/2008</div>
-                </div>
-              </div>
-            </div>
+<body class="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white transition-colors duration-300">
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex-shrink-0">
+          <a href="index.html" class="text-2xl font-bold text-gradient">Adam</a>
+        </div>
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-8">
+            <a href="index.html" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
+            <a href="about.html" class="text-primary-600 dark:text-primary-400 font-medium">About</a>
+            <a href="contact.html" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
           </div>
         </div>
+        <button id="theme-toggle" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
+          <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
+        </button>
       </div>
-    </section>
-    
-    <!-- Skills section (NEW) -->
-    <section class="w-full py-12 md:py-24 lg:py-32 bg-background" data-scroll>
-      <div class="container px-4 md:px-6 mx-auto">
-        <div class="flex flex-col items-center justify-center space-y-4 text-center">
-          <div class="space-y-2">
-            <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl text-gradient">My Skills</h2>
-            <p class="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Technical expertise and competencies
-            </p>
-          </div>
-        </div>
-        
-        <div class="mx-auto max-w-4xl grid gap-8 py-12 md:grid-cols-2">
-          <!-- Skill category 1: Cybersecurity -->
-          <div class="space-y-6">
-            <h3 class="text-xl font-bold">Cybersecurity</h3>
-            
-            <!-- Skill item -->
-            <div class="space-y-2">
-              <div class="flex justify-between">
-                <span class="font-medium">Penetration Testing</span>
-                <span>90%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 0%" data-width="90%"></div>
-              </div>
-            </div>
-            
-            <!-- Skill item -->
-            <div class="space-y-2">
-              <div class="flex justify-between">
-                <span class="font-medium">OSINT</span>
-                <span>85%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 0%" data-width="85%"></div>
-              </div>
-            </div>
-            
-            <!-- Skill item -->
-            <div class="space-y-2">
-              <div class="flex justify-between">
-                <span class="font-medium">Web Exploitation</span>
-                <span>80%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 0%" data-width="80%"></div>
-              </div>
-            </div>
-            
-            <!-- Skill item -->
-            <div class="space-y-2">
-              <div class="flex justify-between">
-                <span class="font-medium">Network Security</span>
-                <span>75%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 0%" data-width="75%"></div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Skill category 2: Technical -->
-          <div class="space-y-6">
-            <h3 class="text-xl font-bold">Technical</h3>
-            
-            <!-- Skill item -->
-            <div class="space-y-2">
-              <div class="flex justify-between">
-                <span class="font-medium">Linux Systems</span>
-                <span>95%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 0%" data-width="95%"></div>
-              </div>
-            </div>
-            
-            <!-- Skill item -->
-            <div class="space-y-2">
-              <div class="flex justify-between">
-                <span class="font-medium">Scripting (Bash/Python)</span>
-                <span>80%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 0%" data-width="80%"></div>
-              </div>
-            </div>
-            
-            <!-- Skill item -->
-            <div class="space-y-2">
-              <div class="flex justify-between">
-                <span class="font-medium">Hardware & Systems</span>
-                <span>90%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 0%" data-width="90%"></div>
-              </div>
-            </div>
-            
-            <!-- Skill item -->
-            <div class="space-y-2">
-              <div class="flex justify-between">
-                <span class="font-medium">Virtualization</span>
-                <span>85%</span>
-              </div>
-              <div class="skill-bar">
-                <div class="skill-progress" style="width: 0%" data-width="85%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-        
-        <!-- Achievements section (NEW) -->
-        <div class="mx-auto max-w-3xl space-y-4 py-8 mt-8">
-          <h3 class="text-2xl font-bold tracking-tighter text-center">Achievements & Milestones</h3>
-          <p class="text-muted-foreground mb-6 text-center">Key accomplishments in my cybersecurity journey</p>
-          
-          <div class="grid gap-6 md:grid-cols-2">
-            <!-- Achievement item -->
-            <div class="group rounded-lg border p-6 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background" data-scroll>
-              <div class="flex flex-col gap-4">
-                <div class="rounded-full bg-primary/10 p-3 w-fit">
-                  <i data-lucide="trophy" class="h-6 w-6 text-primary"></i>
-                </div>
-                <div>
-                  <h4 class="text-lg font-semibold group-hover:text-primary transition-colors">National Cyber Security Competition Finalist</h4>
-                  <p class="text-muted-foreground mt-2">Participated in the finals of the National Cyber Security Competition (NCSC) in Jordan, showcasing strong skills in cybersecurity challenges.</p>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Achievement item -->
-            <div class="group rounded-lg border p-6 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background" data-scroll>
-              <div class="flex flex-col gap-4">
-                <div class="rounded-full bg-primary/10 p-3 w-fit">
-                  <i data-lucide="target" class="h-6 w-6 text-primary"></i>
-                </div>
-                <div>
-                  <h4 class="text-lg font-semibold group-hover:text-primary transition-colors">Hack The Box Progress</h4>
-                  <p class="text-muted-foreground mt-2">Achieved significant progress on Hack The Box platform, solving complex challenges in web exploitation and OSINT categories.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Courses section -->
-        <div class="mx-auto max-w-3xl space-y-4 py-8 mt-8">
-          <h3 class="text-2xl font-bold tracking-tighter text-center">Courses & Certifications</h3>
-          <p class="text-muted-foreground mb-6 text-center">Professional development and continuous learning</p>
-          
-          <div class="grid gap-4 md:grid-cols-2">
-            <!-- Course item 1 -->
-            <div class="group rounded-lg border p-4 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background" data-scroll>
-              <div class="flex items-start gap-3">
-                <div class="rounded-full bg-primary/10 p-2">
-                  <i data-lucide="award" class="h-5 w-5 text-primary"></i>
-                </div>
-                <div>
-                  <h4 class="font-semibold group-hover:text-primary transition-colors">CompTIA A+</h4>
-                  <p class="text-sm text-muted-foreground">Foundational understanding of computer hardware and software</p>
-                  <div class="mt-2 flex items-center text-xs text-muted-foreground">
-                    <i data-lucide="calendar" class="mr-1 h-3 w-3"></i> Completed 2024
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Course item 2 -->
-            <div class="group rounded-lg border p-4 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background" data-scroll>
-              <div class="flex items-start gap-3">
-                <div class="rounded-full bg-primary/10 p-2">
-                  <i data-lucide="shield" class="h-5 w-5 text-primary"></i>
-                </div>
-                <div>
-                  <h4 class="font-semibold group-hover:text-primary transition-colors">CompTIA Security+</h4>
-                  <p class="text-sm text-muted-foreground">Core cybersecurity skills and best practices</p>
-                  <div class="mt-2 flex items-center text-xs text-muted-foreground">
-                    <i data-lucide="calendar" class="mr-1 h-3 w-3"></i> Completed 2025
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Course item 3 -->
-            <div class="group rounded-lg border p-4 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background" data-scroll>
-              <div class="flex items-start gap-3">
-                <div class="rounded-full bg-primary/10 p-2">
-                  <i data-lucide="code" class="h-5 w-5 text-primary"></i>
-                </div>
-                <div>
-                  <h4 class="font-semibold group-hover:text-primary transition-colors">Ethical Hacking</h4>
-                  <p class="text-sm text-muted-foreground">Penetration testing and vulnerability assessment techniques with Cisco</p>
-                  <div class="mt-2 flex items-center text-xs text-muted-foreground">
-                    <i data-lucide="calendar" class="mr-1 h-3 w-3"></i> Completed 2024
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Course item 4 -->
-            <div class="group rounded-lg border p-4 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background" data-scroll>
-              <div class="flex items-start gap-3">
-                <div class="rounded-full bg-primary/10 p-2">
-                  <i data-lucide="flag" class="h-5 w-5 text-primary"></i>
-                </div>
-                <div>
-                  <h4 class="font-semibold group-hover:text-primary transition-colors">CTF Fianls</h4>
-                  <p class="text-sm text-muted-foreground">Reached the finals of Jordan’s National Cyber Security Competition through advanced skills in OSINT and web-based challenges</p>
-                  <div class="mt-2 flex items-center text-xs text-muted-foreground">
-                    <i data-lucide="calendar" class="mr-1 h-3 w-3"></i> Ongoing
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- Services section -->
-    <section class="w-full py-12 md:py-24 lg:py-32" data-scroll>
-      <div class="container px-4 md:px-6 mx-auto">
-        <div class="flex flex-col items-center justify-center space-y-4 text-center">
-          <div class="space-y-2">
-            <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl text-gradient">What I Do</h2>
-            <p class="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Services I offer and technologies I work with
-            </p>
-          </div>
-        </div>
-        <!-- Services grid -->
-        <div class="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3">
-          <!-- Service card - Cybersecurity & Penetration Testing -->
-          <div class="group flex flex-col items-center space-y-4 rounded-lg border p-6 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background" data-scroll>
-            <div class="text-4xl group-hover:scale-110 transition-transform">🛡️</div>
-            <div class="space-y-2 text-center">
-              <h3 class="font-bold group-hover:text-primary transition-colors">Cybersecurity & Penetration Testing</h3>
-              <p class="text-sm text-muted-foreground">Finding and fixing vulnerabilities in websites and networks using real-world techniques and ethical hacking tools.</p>
-            </div>
-          </div>
-          <!-- Service card - CTF & OSINT Challenges -->
-          <div class="group flex flex-col items-center space-y-4 rounded-lg border p-6 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background" data-scroll>
-            <div class="text-4xl group-hover:scale-110 transition-transform">🎯</div>
-            <div class="space-y-2 text-center">
-              <h3 class="font-bold group-hover:text-primary transition-colors">CTF & OSINT Challenges</h3>
-              <p class="text-sm text-muted-foreground">Solving advanced Capture The Flag (CTF) challenges with a focus on OSINT, web exploitation, and real-world problem solving.</p>
-            </div>
-          </div>
-          <!-- Service card - Linux & System Hardening -->
-          <div class="group flex flex-col items-center space-y-4 rounded-lg border p-6 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background" data-scroll>
-            <div class="text-4xl group-hover:scale-110 transition-transform">🐧</div>
-            <div class="space-y-2 text-center">
-              <h3 class="font-bold group-hover:text-primary transition-colors">Linux & System Hardening</h3>
-              <p class="text-sm text-muted-foreground">Working with Linux-based environments like Kali and XFCE. Skilled in customizing and securing systems for performance, privacy, and penetration testing.</p>
-            </div>
-          </div>
-          <!-- Service card - Offensive Security Tools -->
-          <div class="group flex flex-col items-center space-y-4 rounded-lg border p-6 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background" data-scroll>
-            <div class="text-4xl group-hover:scale-110 transition-transform">🧰</div>
-            <div class="space-y-2 text-center">
-              <h3 class="font-bold group-hover:text-primary transition-colors">Offensive Security Tools</h3>
-              <p class="text-sm text-muted-foreground">Hands-on experience with tools like Nmap, Burp Suite, Metasploit, and custom scripts for scanning, enumeration, and exploitation.</p>
-            </div>
-          </div>
-          <!-- Service card - Virtualization & Lab Setup -->
-          <div class="group flex flex-col items-center space-y-4 rounded-lg border p-6 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background" data-scroll>
-            <div class="text-4xl group-hover:scale-110 transition-transform">⚙️</div>
-            <div class="space-y-2 text-center">
-              <h3 class="font-bold group-hover:text-primary transition-colors">Virtualization & Lab Setup</h3>
-              <p class="text-sm text-muted-foreground">Analyzing security flaws and providing clear, actionable reports that help businesses understand and fix their issues.</p>
-            </div>
-          </div>
-          <!-- Service card - Security Education & Awareness -->
-          <div class="group flex flex-col items-center space-y-4 rounded-lg border p-6 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background" data-scroll>
-            <div class="text-4xl group-hover:scale-110 transition-transform">🧠</div>
-            <div class="space-y-2 text-center">
-              <h3 class="font-bold group-hover:text-primary transition-colors">Security Education & Awareness</h3>
-              <p class="text-sm text-muted-foreground">Sharing knowledge through real examples, guiding beginners in cybersecurity, and promoting a mindset focused on ethical hacking and digital responsibility.</p>
-            </div>
-          </div>
-          <!-- Service card - Hardware & Systems Engineering -->
-          <div class="col-span-full flex justify-center" data-scroll>
-            <div class="group flex flex-col items-center space-y-4 rounded-lg border p-6 shadow-sm transition-all hover:border-primary hover:shadow-md bg-background">
-              <div class="text-4xl group-hover:scale-110 transition-transform">🖥️</div>
-              <div class="space-y-2 text-center">
-                <h3 class="font-bold group-hover:text-primary transition-colors">Hardware & Systems Engineering</h3>
-                <p class="text-sm text-muted-foreground">Experienced in building custom PCs, configuring servers, and understanding hardware at a deep level. 
-                      Skilled in troubleshooting, performance tuning, and recommending setups based on real needs.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
+  </nav>
 
-  <!-- Footer with copyright and social links -->
-  <footer class="w-full py-6 px-4 md:px-6 border-t">
-    <div class="container mx-auto">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-sm text-muted-foreground">
-          © <script>document.write(new Date().getFullYear())</script> Adam Daradkeh. All rights reserved.
-        </p>
-        
-        <!-- Social links -->
-        <div class="flex items-center gap-4">
-          <a href="#" class="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub">
+  <!-- About Hero -->
+  <section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="animate-slide-up">
+          <h1 class="text-5xl font-bold mb-6 text-gradient">About Me</h1>
+          <div class="space-y-6 text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed">
+            <p>
+              Hello! I'm <span class="font-semibold text-primary-600 dark:text-primary-400">Adam Daradkeh</span>, 
+              a passionate IT student studying BTEC IT in Jordan. I'm deeply interested in cybersecurity, 
+              ethical hacking, and competitive Capture The Flag (CTF) challenges.
+            </p>
+            <p>
+              I specialize in OSINT and web exploitation, with strong progress on platforms like Hack The Box. 
+              I've qualified for the National Cyber Security Competition finals in Jordan (NCSC), demonstrating 
+              my commitment to excellence in cybersecurity.
+            </p>
+            <p>
+              My goal is to build a cybersecurity business, offering penetration testing and vulnerability 
+              assessments to help organizations secure their digital presence. I believe in continuous learning 
+              and staying ahead of emerging threats.
+            </p>
+          </div>
+          <div class="mt-8">
+            <a href="contact.html" class="inline-flex items-center px-6 py-3 gradient-bg text-white font-medium rounded-lg hover:opacity-90 transition-opacity">
+              Get in Touch
+              <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+            </a>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <div class="relative">
+            <div class="w-80 h-96 rounded-2xl gradient-bg p-2">
+              <img src="img/CTF.jpeg" alt="Adam Daradkeh" class="w-full h-full rounded-xl object-cover">
+            </div>
+            <div class="absolute bottom-4 left-4 right-4 glass rounded-lg p-4 text-white">
+              <div class="font-semibold">Adam Daradkeh</div>
+              <div class="text-sm opacity-90">Born: 19/DEC/2008</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="py-16 bg-neutral-50 dark:bg-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4 text-gradient">Technical Skills</h2>
+        <p class="text-lg text-neutral-600 dark:text-neutral-300">My expertise and proficiency levels</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-12">
+        <div>
+          <h3 class="text-2xl font-semibold mb-6">Cybersecurity</h3>
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Penetration Testing</span>
+                <span class="text-primary-600 dark:text-primary-400">90%</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
+                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">OSINT</span>
+                <span class="text-primary-600 dark:text-primary-400">85%</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
+                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 85%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Web Exploitation</span>
+                <span class="text-primary-600 dark:text-primary-400">80%</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
+                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Network Security</span>
+                <span class="text-primary-600 dark:text-primary-400">75%</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
+                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 75%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-2xl font-semibold mb-6">Technical</h3>
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Linux Systems</span>
+                <span class="text-primary-600 dark:text-primary-400">95%</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
+                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 95%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Scripting (Bash/Python)</span>
+                <span class="text-primary-600 dark:text-primary-400">80%</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
+                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Hardware & Systems</span>
+                <span class="text-primary-600 dark:text-primary-400">90%</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
+                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 90%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Virtualization</span>
+                <span class="text-primary-600 dark:text-primary-400">85%</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
+                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 85%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4 text-gradient">Achievements</h2>
+        <p class="text-lg text-neutral-600 dark:text-neutral-300">Key milestones in my cybersecurity journey</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-4">
+              <i data-lucide="trophy" class="h-6 w-6 text-white"></i>
+            </div>
+            <h3 class="text-xl font-semibold">NCSC Finalist</h3>
+          </div>
+          <p class="text-neutral-600 dark:text-neutral-300">
+            Reached the finals of Jordan's National Cyber Security Competition, 
+            demonstrating advanced skills in cybersecurity challenges.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-4">
+              <i data-lucide="target" class="h-6 w-6 text-white"></i>
+            </div>
+            <h3 class="text-xl font-semibold">HTB Progress</h3>
+          </div>
+          <p class="text-neutral-600 dark:text-neutral-300">
+            Significant progress on Hack The Box platform, solving complex 
+            challenges in web exploitation and OSINT categories.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="py-16 bg-neutral-50 dark:bg-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4 text-gradient">Certifications</h2>
+        <p class="text-lg text-neutral-600 dark:text-neutral-300">Professional development and continuous learning</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center">
+          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="award" class="h-8 w-8 text-white"></i>
+          </div>
+          <h3 class="font-semibold mb-2">CompTIA A+</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-300">Hardware & Software Fundamentals</p>
+          <p class="text-xs text-primary-600 dark:text-primary-400 mt-2">Completed 2024</p>
+        </div>
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center">
+          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="shield" class="h-8 w-8 text-white"></i>
+          </div>
+          <h3 class="font-semibold mb-2">CompTIA Security+</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-300">Core Cybersecurity Skills</p>
+          <p class="text-xs text-primary-600 dark:text-primary-400 mt-2">Completed 2025</p>
+        </div>
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center">
+          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="code" class="h-8 w-8 text-white"></i>
+          </div>
+          <h3 class="font-semibold mb-2">Ethical Hacking</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-300">Cisco Penetration Testing</p>
+          <p class="text-xs text-primary-600 dark:text-primary-400 mt-2">Completed 2024</p>
+        </div>
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center">
+          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="flag" class="h-8 w-8 text-white"></i>
+          </div>
+          <h3 class="font-semibold mb-2">CTF Finals</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-300">NCSC Competition</p>
+          <p class="text-xs text-primary-600 dark:text-primary-400 mt-2">2024</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4 text-gradient">What I Do</h2>
+        <p class="text-lg text-neutral-600 dark:text-neutral-300">Services and expertise I offer</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-4xl mb-4">🛡️</div>
+          <h3 class="text-xl font-semibold mb-4">Penetration Testing</h3>
+          <p class="text-neutral-600 dark:text-neutral-300">
+            Comprehensive security assessments to identify vulnerabilities in web applications and networks.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-4xl mb-4">🔍</div>
+          <h3 class="text-xl font-semibold mb-4">OSINT Research</h3>
+          <p class="text-neutral-600 dark:text-neutral-300">
+            Open-source intelligence gathering and analysis for security assessments and investigations.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-4xl mb-4">🎯</div>
+          <h3 class="text-xl font-semibold mb-4">CTF Training</h3>
+          <p class="text-neutral-600 dark:text-neutral-300">
+            Competitive cybersecurity challenge solving and training for aspiring ethical hackers.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-4xl mb-4">🐧</div>
+          <h3 class="text-xl font-semibold mb-4">Linux Administration</h3>
+          <p class="text-neutral-600 dark:text-neutral-300">
+            System hardening, configuration, and security optimization for Linux environments.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-4xl mb-4">🧰</div>
+          <h3 class="text-xl font-semibold mb-4">Security Tools</h3>
+          <p class="text-neutral-600 dark:text-neutral-300">
+            Expertise with industry-standard tools like Nmap, Burp Suite, Metasploit, and custom scripts.
+          </p>
+        </div>
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+          <div class="text-4xl mb-4">🎓</div>
+          <h3 class="text-xl font-semibold mb-4">Security Education</h3>
+          <p class="text-neutral-600 dark:text-neutral-300">
+            Training and awareness programs to help organizations build a security-conscious culture.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-neutral-100 dark:bg-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-neutral-600 dark:text-neutral-300">© 2024 Adam Daradkeh. All rights reserved.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="https://github.com/daradkeh69" target="_blank" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
             <i data-lucide="github" class="h-5 w-5"></i>
           </a>
-          <a href="#" class="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/adam-daradkeh-814980326/" target="_blank" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
             <i data-lucide="linkedin" class="h-5 w-5"></i>
           </a>
-          <a href="#" class="text-muted-foreground hover:text-primary transition-colors" aria-label="Email">
+          <a href="mailto:adampentest@outlook.com" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
             <i data-lucide="mail" class="h-5 w-5"></i>
           </a>
         </div>
       </div>
     </div>
   </footer>
-  
-  <!-- Back to top button -->
-  <button id="back-to-top" class="back-to-top rounded-full bg-primary p-2 text-primary-foreground shadow-md hover:bg-primary/90 transition-all">
-    <i data-lucide="chevron-up" class="h-5 w-5"></i>
-    <span class="sr-only">Back to top</span>
-  </button>
 
   <script>
     // Initialize Lucide icons
     lucide.createIcons();
     
-    // Dark mode toggle functionality
-    document.addEventListener('DOMContentLoaded', function() {
-      // Get the theme toggle button
-      const themeToggle = document.getElementById('theme-toggle');
-      
-      // Check for saved theme preference or use the system preference
-      const savedTheme = localStorage.getItem('theme');
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      
-      // If the user has a saved preference, use that
-      if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-      
-      // Toggle theme when the button is clicked
-      themeToggle.addEventListener('click', function() {
-        // Toggle dark class on the html element
-        document.documentElement.classList.toggle('dark');
-        
-        // Save the current preference to localStorage
-        if (document.documentElement.classList.contains('dark')) {
-          localStorage.setItem('theme', 'dark');
-        } else {
-          localStorage.setItem('theme', 'light');
-        }
-        
-        // Update icons
-        lucide.createIcons();
-      });
-      
-      // Back to top button functionality
-      const backToTopButton = document.getElementById('back-to-top');
-      
-      // Show/hide the button based on scroll position
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-          backToTopButton.classList.add('visible');
-        } else {
-          backToTopButton.classList.remove('visible');
-        }
-      });
-      
-      // Scroll to top when clicked
-      backToTopButton.addEventListener('click', function() {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-      
-      // Animate skill bars when they come into view
-      const skillBars = document.querySelectorAll('.skill-progress');
-      
-      // Function to animate skill bars
-      function animateSkillBars() {
-        skillBars.forEach(bar => {
-          const targetWidth = bar.getAttribute('data-width');
-          bar.style.width = targetWidth;
-        });
-      }
-      
-      // Trigger animation after a short delay
-      setTimeout(animateSkillBars, 500);
-    });
-  </script>
-  
-  <!-- Add this CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.45/dist/lenis.min.js"></script> 
-
-  <script>
-    // Lenis Smooth Scroll Initialization
-    const lenis = new Lenis({
-      lerp: 0.07,  // Lower = smoother (0.1 is default)
-      smoothWheel: true,
-      infinite: false,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+    // Dark mode toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
     
-    // Scroll reveal animation
-    document.addEventListener('DOMContentLoaded', function() {
-      const scrollElements = document.querySelectorAll('[data-scroll]');
-      
-      const elementInView = (el, dividend = 1) => {
-        const elementTop = el.getBoundingClientRect().top;
-        return (
-          elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
-        );
-      };
-      
-      const displayScrollElement = (element) => {
-        element.classList.add('animate-fadeInUp');
-      };
-      
-      const handleScrollAnimation = () => {
-        scrollElements.forEach((el) => {
-          if (elementInView(el, 1.25)) {
-            displayScrollElement(el);
-          }
-        });
-      };
-      
-      // Initial check on page load
-      setTimeout(handleScrollAnimation, 100);
-      
-      // Check on scroll
-      window.addEventListener('scroll', () => {
-        handleScrollAnimation();
-      });
+    // Check for saved theme or default to light
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.classList.toggle('dark', savedTheme === 'dark');
+    
+    themeToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      const theme = html.classList.contains('dark') ? 'dark' : 'light';
+      localStorage.setItem('theme', theme);
+      lucide.createIcons();
     });
   </script>
 </body>
