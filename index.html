@@ -6,6 +6,8 @@
   <title>Adam Daradkeh | Cybersecurity Specialist</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- AOS Animate On Scroll -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -75,6 +77,74 @@
       background: rgba(0, 0, 0, 0.2);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
+    /* Animated gradient background for hero */
+    .animated-gradient-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: linear-gradient(120deg, #06b6d4, #8b5cf6, #06b6d4 80%);
+      background-size: 200% 200%;
+      animation: gradientMove 8s ease-in-out infinite;
+      opacity: 0.25;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Smooth theme transition */
+    html, body {
+      transition: background 0.6s cubic-bezier(.4,0,.2,1), color 0.6s cubic-bezier(.4,0,.2,1);
+    }
+    /* Hamburger menu styles */
+    .hamburger {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      display: block;
+      height: 3px;
+      background: #0891b2;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .dark .hamburger span {
+      background: #8b5cf6;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+    /* Mobile nav overlay */
+    .mobile-nav {
+      transition: opacity 0.3s;
+    }
+    /* Project card tilt effect */
+    .tilt {
+      will-change: transform;
+      transition: transform 0.2s cubic-bezier(.4,0,.2,1), box-shadow 0.2s cubic-bezier(.4,0,.2,1);
+    }
+    /* Circular progress bar animation */
+    .progress-circle {
+      transform: rotate(-90deg);
+    }
+    .progress-bg {
+      stroke: #e5e7eb;
+    }
+    .progress-bar {
+      transition: stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1);
+    }
   </style>
 </head>
 
@@ -93,19 +163,41 @@
             <a href="contact.html" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
           </div>
         </div>
-        <button id="theme-toggle" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+        <!-- Theme toggle for desktop -->
+        <button id="theme-toggle-desktop" class="hidden md:inline-flex p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors ml-4">
           <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
           <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
         </button>
+        <!-- Hamburger for mobile -->
+        <div class="md:hidden flex items-center">
+          <button id="theme-toggle-mobile" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors mr-2">
+            <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
+            <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
+          </button>
+          <div id="hamburger" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile nav overlay -->
+    <div id="mobile-nav" class="mobile-nav fixed inset-0 bg-white/95 dark:bg-neutral-900/95 z-40 flex-col items-center justify-center hidden md:hidden">
+      <div class="flex flex-col items-center gap-8 mt-24">
+        <a href="index.html" class="text-2xl font-bold text-primary-600 dark:text-primary-400">Home</a>
+        <a href="about.html" class="text-2xl font-bold text-neutral-600 dark:text-neutral-300">About</a>
+        <a href="contact.html" class="text-2xl font-bold text-neutral-600 dark:text-neutral-300">Contact</a>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto">
+  <section class="relative pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <div class="animated-gradient-bg"></div>
+    <div class="max-w-7xl mx-auto relative z-10">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div class="animate-slide-up">
+        <div data-aos="fade-up">
           <h1 class="text-5xl lg:text-6xl font-bold mb-6">
             Hi, I'm <span class="text-gradient">Adam</span>
           </h1>
@@ -137,10 +229,10 @@
             </a>
           </div>
         </div>
-        <div class="flex justify-center animate-float">
+        <div class="flex justify-center animate-float" data-aos="fade-left">
           <div class="relative">
             <div class="w-80 h-80 rounded-full gradient-bg p-2">
-              <img src="img/CTF.jpeg" class="w-full h-full rounded-full object-cover">
+              <img src="img/CTF.jpeg" alt="Adam Daradkeh" class="w-full h-full rounded-full object-cover">
             </div>
           </div>
         </div>
@@ -148,33 +240,61 @@
     </div>
   </section>
 
-  <!-- Skills Section -->
+  <!-- Skills Section with Animated Circular Progress Bars -->
   <section class="py-16 bg-neutral-50 dark:bg-neutral-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
+      <div class="text-center mb-12" data-aos="fade-up">
         <h2 class="text-4xl font-bold mb-4 text-gradient">Core Skills</h2>
         <p class="text-lg text-neutral-600 dark:text-neutral-300">Technologies and techniques I specialize in</p>
       </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="text-4xl mb-4">🛡️</div>
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
+        <!-- Penetration Testing -->
+        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="relative mb-4">
+            <svg width="96" height="96" class="progress-circle" viewBox="0 0 100 100">
+              <circle class="progress-bg" cx="50" cy="50" r="45" stroke-width="10" fill="none"/>
+              <circle class="progress-bar" data-value="90" cx="50" cy="50" r="45" stroke="#06b6d4" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="282.743" stroke-dashoffset="282.743"/>
+            </svg>
+            <span class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-primary-600 dark:text-primary-400">90%</span>
+          </div>
           <h3 class="text-xl font-semibold mb-2">Penetration Testing</h3>
-          <p class="text-neutral-600 dark:text-neutral-300">Web application and network security testing</p>
+          <p class="text-neutral-600 dark:text-neutral-300 text-center">Web application and network security testing</p>
         </div>
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="text-4xl mb-4">🔍</div>
+        <!-- OSINT -->
+        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="relative mb-4">
+            <svg width="96" height="96" class="progress-circle" viewBox="0 0 100 100">
+              <circle class="progress-bg" cx="50" cy="50" r="45" stroke-width="10" fill="none"/>
+              <circle class="progress-bar" data-value="80" cx="50" cy="50" r="45" stroke="#8b5cf6" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="282.743" stroke-dashoffset="282.743"/>
+            </svg>
+            <span class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-accent-600 dark:text-accent-500">80%</span>
+          </div>
           <h3 class="text-xl font-semibold mb-2">OSINT</h3>
-          <p class="text-neutral-600 dark:text-neutral-300">Open-source intelligence gathering</p>
+          <p class="text-neutral-600 dark:text-neutral-300 text-center">Open-source intelligence gathering</p>
         </div>
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="text-4xl mb-4">🐧</div>
+        <!-- Linux Systems -->
+        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="relative mb-4">
+            <svg width="96" height="96" class="progress-circle" viewBox="0 0 100 100">
+              <circle class="progress-bg" cx="50" cy="50" r="45" stroke-width="10" fill="none"/>
+              <circle class="progress-bar" data-value="85" cx="50" cy="50" r="45" stroke="#0e7490" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="282.743" stroke-dashoffset="282.743"/>
+            </svg>
+            <span class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-primary-700 dark:text-primary-300">85%</span>
+          </div>
           <h3 class="text-xl font-semibold mb-2">Linux Systems</h3>
-          <p class="text-neutral-600 dark:text-neutral-300">Kali Linux and security distributions</p>
+          <p class="text-neutral-600 dark:text-neutral-300 text-center">Kali Linux and security distributions</p>
         </div>
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-          <div class="text-4xl mb-4">🎯</div>
+        <!-- CTF Challenges -->
+        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="400">
+          <div class="relative mb-4">
+            <svg width="96" height="96" class="progress-circle" viewBox="0 0 100 100">
+              <circle class="progress-bg" cx="50" cy="50" r="45" stroke-width="10" fill="none"/>
+              <circle class="progress-bar" data-value="95" cx="50" cy="50" r="45" stroke="#7c3aed" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="282.743" stroke-dashoffset="282.743"/>
+            </svg>
+            <span class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-accent-600 dark:text-accent-500">95%</span>
+          </div>
           <h3 class="text-xl font-semibold mb-2">CTF Challenges</h3>
-          <p class="text-neutral-600 dark:text-neutral-300">Competitive cybersecurity challenges</p>
+          <p class="text-neutral-600 dark:text-neutral-300 text-center">Competitive cybersecurity challenges</p>
         </div>
       </div>
     </div>
@@ -183,12 +303,13 @@
   <!-- Featured Projects -->
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
+      <div class="text-center mb-12" data-aos="fade-up">
         <h2 class="text-4xl font-bold mb-4 text-gradient">Featured Work</h2>
         <p class="text-lg text-neutral-600 dark:text-neutral-300">Recent achievements and projects</p>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+        <!-- Card 1 -->
+        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow tilt transform hover:scale-105" data-aos="fade-up" data-aos-delay="100">
           <div class="h-48 gradient-bg flex items-center justify-center">
             <i data-lucide="shield" class="h-16 w-16 text-white"></i>
           </div>
@@ -201,7 +322,8 @@
             </div>
           </div>
         </div>
-        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+        <!-- Card 2 -->
+        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow tilt transform hover:scale-105" data-aos="fade-up" data-aos-delay="200">
           <div class="h-48 gradient-bg flex items-center justify-center">
             <i data-lucide="terminal" class="h-16 w-16 text-white"></i>
           </div>
@@ -214,7 +336,8 @@
             </div>
           </div>
         </div>
-        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+        <!-- Card 3 -->
+        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow tilt transform hover:scale-105" data-aos="fade-up" data-aos-delay="300">
           <div class="h-48 gradient-bg flex items-center justify-center">
             <i data-lucide="server" class="h-16 w-16 text-white"></i>
           </div>
@@ -232,7 +355,7 @@
   </section>
 
   <!-- CTA Section -->
-  <section class="py-16 gradient-bg">
+  <section class="py-16 gradient-bg" data-aos="fade-up">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h2 class="text-4xl font-bold text-white mb-4">Ready to Secure Your Systems?</h2>
       <p class="text-xl text-white/90 mb-8">Let's discuss how I can help protect your digital assets</p>
@@ -248,7 +371,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-8 bg-neutral-100 dark:bg-neutral-800">
+  <footer class="py-8 bg-neutral-100 dark:bg-neutral-800" data-aos="fade-up">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row justify-between items-center">
         <p class="text-neutral-600 dark:text-neutral-300">© 2024 Adam Daradkeh. All rights reserved.</p>
@@ -267,24 +390,85 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
     // Initialize Lucide icons
     lucide.createIcons();
-    
-    // Dark mode toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-    
-    // Check for saved theme or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    html.classList.toggle('dark', savedTheme === 'dark');
-    
-    themeToggle.addEventListener('click', () => {
-      html.classList.toggle('dark');
-      const theme = html.classList.contains('dark') ? 'dark' : 'light';
+
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 80,
+    });
+
+    // Theme toggle logic for both desktop and mobile
+    function setTheme(theme) {
+      const html = document.documentElement;
+      html.classList.toggle('dark', theme === 'dark');
       localStorage.setItem('theme', theme);
       lucide.createIcons();
+    }
+    // Set initial theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    // Theme toggle buttons
+    const themeToggleDesktop = document.getElementById('theme-toggle-desktop');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    [themeToggleDesktop, themeToggleMobile].forEach(btn => {
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const html = document.documentElement;
+          const theme = html.classList.contains('dark') ? 'light' : 'dark';
+          setTheme(theme);
+        });
+      }
     });
+
+    // Hamburger menu logic
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('hidden');
+    });
+    // Hide mobile nav on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileNav.classList.add('hidden');
+      });
+    });
+
+    // Interactive tilt effect for project cards
+    document.querySelectorAll('.tilt').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width/2;
+        const y = e.clientY - rect.top - rect.height/2;
+        card.style.transform = `scale(1.05) rotateY(${x/20}deg) rotateX(${-y/20}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // Animate circular progress bars
+    function animateProgressBars() {
+      document.querySelectorAll('.progress-bar').forEach(bar => {
+        const value = +bar.getAttribute('data-value');
+        const radius = bar.getAttribute('r');
+        const circumference = 2 * Math.PI * radius;
+        const offset = circumference * (1 - value / 100);
+        setTimeout(() => {
+          bar.style.strokeDashoffset = offset;
+        }, 400);
+      });
+    }
+    window.addEventListener('DOMContentLoaded', animateProgressBars);
+    document.addEventListener('aos:in', animateProgressBars);
   </script>
 </body>
 </html>

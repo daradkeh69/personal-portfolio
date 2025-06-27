@@ -56,6 +56,34 @@
     @keyframes progress {
       from { width: 0; }
     }
+    /* Animated SVG background for hero */
+    .animated-svg-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    /* Microinteraction hover effects */
+    .card-hover:hover, .card-hover:focus {
+      transform: translateY(-6px) scale(1.025);
+      box-shadow: 0 8px 32px 0 rgba(6,182,212,0.15), 0 1.5px 6px 0 rgba(139,92,246,0.09);
+      transition: transform 0.2s, box-shadow 0.2s;
+      z-index: 1;
+    }
+    .icon-hover:hover, .icon-hover:focus {
+      color: #8b5cf6 !important;
+      transform: scale(1.15) rotate(-8deg);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .btn-hover:hover, .btn-hover:focus {
+      opacity: 0.85;
+      transform: scale(1.04);
+      box-shadow: 0 4px 16px 0 rgba(6,182,212,0.10);
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
     .gradient-bg {
       background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
     }
@@ -104,8 +132,45 @@
   </nav>
 
   <!-- About Hero -->
-  <section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto">
+  <section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <!-- Animated SVG background -->
+    <div class="animated-svg-bg">
+      <svg width="100%" height="100%" viewBox="0 0 1440 400" preserveAspectRatio="none" style="position:absolute;top:0;left:0;">
+        <defs>
+          <linearGradient id="aboutHeroGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#06b6d4" />
+            <stop offset="100%" stop-color="#8b5cf6" />
+          </linearGradient>
+        </defs>
+        <!-- Original circles, now move faster -->
+        <circle cx="350" cy="110" r="60" fill="url(#aboutHeroGradient)" opacity="0.18">
+          <animate attributeName="cx" values="350;400;350" dur="6s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="110;130;110" dur="5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="1100" cy="170" r="38" fill="#8b5cf6" opacity="0.13">
+          <animate attributeName="cy" values="170;200;170" dur="7s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="720" cy="260" r="50" fill="#06b5cf6" opacity="0.10">
+          <animate attributeName="r" values="50;65;50" dur="6s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="250" cy="300" r="18" fill="#8b5cf6" opacity="0.10">
+          <animate attributeName="cy" values="300;270;300" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <!-- 3 new circles, different sizes/colors/movement -->
+        <circle cx="600" cy="80" r="28" fill="#8b5cf6" opacity="0.12">
+          <animate attributeName="cx" values="600;700;600" dur="5s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="80;120;80" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="1300" cy="320" r="22" fill="#06b6d4" opacity="0.13">
+          <animate attributeName="cy" values="320;350;320" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="900" cy="60" r="35" fill="#8b5cf6" opacity="0.09">
+          <animate attributeName="cx" values="900;950;900" dur="4.5s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="60;100;60" dur="3.5s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+    <div class="max-w-7xl mx-auto relative z-10">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
         <div class="animate-slide-up">
           <h1 class="text-5xl font-bold mb-6 text-gradient">About Me</h1>
@@ -127,16 +192,16 @@
             </p>
           </div>
           <div class="mt-8">
-            <a href="contact.html" class="inline-flex items-center px-6 py-3 gradient-bg text-white font-medium rounded-lg hover:opacity-90 transition-opacity">
+            <a href="contact.html" class="inline-flex items-center px-6 py-3 gradient-bg text-white font-medium rounded-lg btn-hover hover:opacity-90 transition-opacity">
               Get in Touch
-              <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+              <i data-lucide="arrow-right" class="ml-2 h-4 w-4 icon-hover"></i>
             </a>
           </div>
         </div>
         <div class="flex justify-center">
           <div class="relative">
             <div class="w-80 h-96 rounded-2xl gradient-bg p-2">
-              <img src="img/CTF.jpeg" class="w-full h-full rounded-xl object-cover">
+              <img src="img/CTF.jpeg" class="w-full h-full rounded-xl object-cover" loading="lazy" width="320" height="384">
             </div>
           </div>
         </div>
@@ -246,10 +311,10 @@
         <p class="text-lg text-neutral-600 dark:text-neutral-300">Key milestones in my cybersecurity journey</p>
       </div>
       <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg">
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg card-hover transition-transform transition-shadow">
           <div class="flex items-center mb-4">
             <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-4">
-              <i data-lucide="trophy" class="h-6 w-6 text-white"></i>
+              <i data-lucide="trophy" class="h-6 w-6 text-white icon-hover"></i>
             </div>
             <h3 class="text-xl font-semibold">NCSC Finalist</h3>
           </div>
@@ -258,10 +323,10 @@
             demonstrating advanced skills in cybersecurity challenges.
           </p>
         </div>
-        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg">
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg card-hover transition-transform transition-shadow">
           <div class="flex items-center mb-4">
             <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-4">
-              <i data-lucide="target" class="h-6 w-6 text-white"></i>
+              <i data-lucide="target" class="h-6 w-6 text-white icon-hover"></i>
             </div>
             <h3 class="text-xl font-semibold">HTB Progress</h3>
           </div>
@@ -273,7 +338,6 @@
       </div>
     </div>
   </section>
-
   <!-- Certifications -->
   <section class="py-16 bg-neutral-50 dark:bg-neutral-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -282,33 +346,33 @@
         <p class="text-lg text-neutral-600 dark:text-neutral-300">Professional development and continuous learning</p>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center">
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center card-hover transition-transform transition-shadow">
           <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="award" class="h-8 w-8 text-white"></i>
+            <i data-lucide="award" class="h-8 w-8 text-white icon-hover"></i>
           </div>
           <h3 class="font-semibold mb-2">CompTIA A+</h3>
           <p class="text-sm text-neutral-600 dark:text-neutral-300">Hardware & Software Fundamentals</p>
           <p class="text-xs text-primary-600 dark:text-primary-400 mt-2">Completed 2024</p>
         </div>
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center">
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center card-hover transition-transform transition-shadow">
           <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="shield" class="h-8 w-8 text-white"></i>
+            <i data-lucide="shield" class="h-8 w-8 text-white icon-hover"></i>
           </div>
           <h3 class="font-semibold mb-2">CompTIA Security+</h3>
           <p class="text-sm text-neutral-600 dark:text-neutral-300">Core Cybersecurity Skills</p>
           <p class="text-xs text-primary-600 dark:text-primary-400 mt-2">Completed 2025</p>
         </div>
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center">
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center card-hover transition-transform transition-shadow">
           <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="code" class="h-8 w-8 text-white"></i>
+            <i data-lucide="code" class="h-8 w-8 text-white icon-hover"></i>
           </div>
           <h3 class="font-semibold mb-2">Ethical Hacking</h3>
           <p class="text-sm text-neutral-600 dark:text-neutral-300">Cisco Penetration Testing</p>
           <p class="text-xs text-primary-600 dark:text-primary-400 mt-2">Completed 2024</p>
         </div>
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center">
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center card-hover transition-transform transition-shadow">
           <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="flag" class="h-8 w-8 text-white"></i>
+            <i data-lucide="flag" class="h-8 w-8 text-white icon-hover"></i>
           </div>
           <h3 class="font-semibold mb-2">CTF Finals</h3>
           <p class="text-sm text-neutral-600 dark:text-neutral-300">NCSC Competition</p>
@@ -401,7 +465,7 @@
     const html = document.documentElement;
     
     // Check for saved theme or default to light
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     html.classList.toggle('dark', savedTheme === 'dark');
     
     themeToggle.addEventListener('click', () => {
