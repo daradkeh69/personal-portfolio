@@ -1,38 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adam Daradkeh | Cybersecurity Specialist</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- AOS Animate On Scroll -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          colors: {
-            primary: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              500: '#06b6d4',
-              600: '#0891b2',
-              700: '#0e7490',
-              900: '#164e63',
-            },
-            accent: {
-              500: '#8b5cf6',
-              600: '#7c3aed',
-            },
-            neutral: {
-              50: '#fafafa',
-              100: '#f5f5f5',
-              800: '#262626',
-              900: '#171717',
-            }
-          },
           fontFamily: {
             sans: ['Inter', 'system-ui', 'sans-serif'],
           },
@@ -45,7 +24,6 @@
       }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -59,133 +37,61 @@
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-20px); }
     }
-    .gradient-bg {
-      background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
-    }
-    .text-gradient {
-      background: linear-gradient(135deg, #06b6d4, #8b5cf6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .glass {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .dark .glass {
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    /* Animated gradient background for hero */
-    .animated-gradient-bg {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background: linear-gradient(120deg, #06b6d4, #8b5cf6, #06b6d4 80%);
-      background-size: 200% 200%;
-      animation: gradientMove 8s ease-in-out infinite;
-      opacity: 0.25;
-    }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    /* Smooth theme transition */
     html, body {
       transition: background 0.6s cubic-bezier(.4,0,.2,1), color 0.6s cubic-bezier(.4,0,.2,1);
     }
-    /* Hamburger menu styles */
-    .hamburger {
-      width: 28px;
-      height: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 5px;
-      cursor: pointer;
-    }
-    .hamburger span {
-      display: block;
-      height: 3px;
-      background: #0891b2;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-    .dark .hamburger span {
-      background: #8b5cf6;
-    }
-    .hamburger.active span:nth-child(1) {
-      transform: translateY(8px) rotate(45deg);
-    }
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active span:nth-child(3) {
-      transform: translateY(-8px) rotate(-45deg);
-    }
-    /* Mobile nav overlay */
     .mobile-nav {
-      transition: opacity 0.3s;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
-    /* Project card tilt effect */
-    .tilt {
-      will-change: transform;
-      transition: transform 0.2s cubic-bezier(.4,0,.2,1), box-shadow 0.2s cubic-bezier(.4,0,.2,1);
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      transition: transform 0.2s ease-in-out;
     }
-    /* Circular progress bar animation */
-    .progress-circle {
-      transform: rotate(-90deg);
-    }
-    .progress-bg {
-      stroke: #e5e7eb;
-    }
-    .progress-bar {
-      transition: stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1);
+    .hover-scale:hover {
+      transform: scale(1.05);
+      transition: transform 0.2s ease-in-out;
     }
   </style>
 </head>
 
 <body class="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white transition-colors duration-300">
   <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 glass">
+  <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/80 dark:bg-neutral-900/80 border-b border-neutral-200 dark:border-neutral-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
-        <div class="flex-shrink-0">
-          <a href="index.html" class="text-2xl font-bold text-gradient">Adam</a>
-        </div>
-        <div class="hidden md:block">
-          <div class="ml-10 flex items-baseline space-x-8">
-            <a href="index.html" class="text-primary-600 dark:text-primary-400 font-medium">Home</a>
-            <a href="about.html" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">About</a>
-            <a href="contact.html" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
-          </div>
-        </div>
-        <!-- Theme toggle for desktop -->
-        <button id="theme-toggle-desktop" class="hidden md:inline-flex p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors ml-4">
-          <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
-          <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
-        </button>
-        <!-- Hamburger for mobile -->
-        <div class="md:hidden flex items-center">
-          <button id="theme-toggle-mobile" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors mr-2">
+        <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+          Adam
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-cyan-600 dark:text-cyan-400 font-medium">Home</a>
+          <a href="about.html" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">About</a>
+          <a href="contact.html" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Contact</a>
+          <button id="theme-toggle-desktop" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors ml-4">
             <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
             <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
           </button>
-          <div id="hamburger" class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="md:hidden flex items-center space-x-2">
+          <button id="theme-toggle-mobile" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
+            <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
+          </button>
+          <button id="mobile-menu-toggle" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <i data-lucide="menu" class="h-6 w-6 block" id="menu-icon"></i>
+            <i data-lucide="x" class="h-6 w-6 hidden" id="close-icon"></i>
+          </button>
         </div>
       </div>
     </div>
-    <!-- Mobile nav overlay -->
-    <div id="mobile-nav" class="mobile-nav fixed inset-0 bg-white/95 dark:bg-neutral-900/95 z-40 flex-col items-center justify-center hidden md:hidden">
-      <div class="flex flex-col items-center gap-8 mt-24">
-        <a href="index.html" class="text-2xl font-bold text-primary-600 dark:text-primary-400">Home</a>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="md:hidden fixed inset-0 top-16 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md z-40 hidden">
+      <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <a href="index.html" class="text-2xl font-bold text-cyan-600 dark:text-cyan-400">Home</a>
         <a href="about.html" class="text-2xl font-bold text-neutral-600 dark:text-neutral-300">About</a>
         <a href="contact.html" class="text-2xl font-bold text-neutral-600 dark:text-neutral-300">Contact</a>
       </div>
@@ -194,34 +100,34 @@
 
   <!-- Hero Section -->
   <section class="relative pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
-    <div class="animated-gradient-bg"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 animate-pulse"></div>
     <div class="max-w-7xl mx-auto relative z-10">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div data-aos="fade-up">
-          <h1 class="text-5xl lg:text-6xl font-bold mb-6">
-            Hi, I'm <span class="text-gradient">Adam</span>
+        <div class="space-y-6">
+          <h1 class="text-5xl lg:text-6xl font-bold">
+            Hi, I'm <span class="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">Adam</span>
           </h1>
-          <p class="text-xl text-primary-600 dark:text-primary-400 font-medium mb-4">
+          <p class="text-xl text-cyan-600 dark:text-cyan-400 font-medium">
             Cybersecurity Specialist & Ethical Hacker
           </p>
-          <p class="text-lg text-neutral-600 dark:text-neutral-300 mb-8 leading-relaxed">
-            Passionate about finding vulnerabilities and securing digital systems. 
-            I help organizations protect their data through ethical hacking and penetration testing.
+          <p class="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed">
+            Passionate about finding vulnerabilities and securing digital systems. I help organizations protect
+            their data through ethical hacking and penetration testing.
           </p>
           <div class="flex flex-col sm:flex-row gap-4">
-            <a href="about.html" class="inline-flex items-center px-6 py-3 gradient-bg text-white font-medium rounded-lg hover:opacity-90 transition-opacity">
+            <a href="about.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium rounded-lg hover:opacity-90 transition-opacity">
               Learn More
               <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
             </a>
-            <a href="contact.html" class="inline-flex items-center px-6 py-3 border-2 border-primary-500 text-primary-600 dark:text-primary-400 font-medium rounded-lg hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors">
+            <a href="contact.html" class="inline-flex items-center px-6 py-3 border-2 border-cyan-500 text-cyan-600 dark:text-cyan-400 font-medium rounded-lg hover:bg-cyan-50 dark:hover:bg-cyan-900/20 transition-colors">
               Get in Touch
             </a>
           </div>
-          <div class="flex gap-4 mt-8">
-            <a href="https://github.com/daradkeh69" target="_blank" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+          <div class="flex gap-4">
+            <a href="https://github.com/daradkeh69" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
               <i data-lucide="github" class="h-6 w-6"></i>
             </a>
-            <a href="https://www.linkedin.com/in/adam-daradkeh-814980326/" target="_blank" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <a href="https://www.linkedin.com/in/adam-daradkeh-814980326/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
               <i data-lucide="linkedin" class="h-6 w-6"></i>
             </a>
             <a href="mailto:adampentest@outlook.com" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
@@ -229,10 +135,12 @@
             </a>
           </div>
         </div>
-        <div class="flex justify-center animate-float" data-aos="fade-left">
+        <div class="flex justify-center">
           <div class="relative">
-            <div class="w-80 h-80 rounded-full gradient-bg p-2">
-              <img src="img/CTF.jpeg" alt="Adam Daradkeh" class="w-full h-full rounded-full object-cover">
+            <div class="w-80 h-80 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 p-2 animate-pulse">
+              <div class="w-full h-full rounded-full bg-white dark:bg-neutral-900 p-2">
+                <img src="img/CTF.jpeg" alt="Adam Daradkeh" class="w-full h-full rounded-full object-cover">
+              </div>
             </div>
           </div>
         </div>
@@ -240,61 +148,192 @@
     </div>
   </section>
 
-  <!-- Skills Section with Animated Circular Progress Bars -->
+  <!-- Skills Section -->
   <section class="py-16 bg-neutral-50 dark:bg-neutral-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="text-4xl font-bold mb-4 text-gradient">Core Skills</h2>
-        <p class="text-lg text-neutral-600 dark:text-neutral-300">Technologies and techniques I specialize in</p>
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+          Core Skills
+        </h2>
+        <p class="text-lg text-neutral-600 dark:text-neutral-300">
+          Technologies and techniques I specialize in
+        </p>
       </div>
-      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-8 justify-items-center">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- Penetration Testing -->
-        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="100">
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
           <div class="relative mb-4">
-            <svg width="96" height="96" class="progress-circle" viewBox="0 0 100 100">
-              <circle class="progress-bg" cx="50" cy="50" r="45" stroke-width="10" fill="none"/>
-              <circle class="progress-bar" data-value="90" cx="50" cy="50" r="45" stroke="#06b6d4" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="282.743" stroke-dashoffset="282.743"/>
-            </svg>
-            <span class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-primary-600 dark:text-primary-400">90%</span>
+            <div class="w-20 h-20 mx-auto">
+              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
+                <circle cx="50" cy="50" r="40" stroke="url(#gradient)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="25.12" class="transition-all duration-1000 ease-out"/>
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#06b6d4"/>
+                    <stop offset="100%" stop-color="#8b5cf6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">90%</span>
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl font-semibold mb-2">Penetration Testing</h3>
-          <p class="text-neutral-600 dark:text-neutral-300 text-center">Web application and network security testing</p>
+          <h3 class="text-lg font-semibold text-center mb-2">Penetration Testing</h3>
         </div>
+
         <!-- OSINT -->
-        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
           <div class="relative mb-4">
-            <svg width="96" height="96" class="progress-circle" viewBox="0 0 100 100">
-              <circle class="progress-bg" cx="50" cy="50" r="45" stroke-width="10" fill="none"/>
-              <circle class="progress-bar" data-value="80" cx="50" cy="50" r="45" stroke="#8b5cf6" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="282.743" stroke-dashoffset="282.743"/>
-            </svg>
-            <span class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-accent-600 dark:text-accent-500">80%</span>
+            <div class="w-20 h-20 mx-auto">
+              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
+                <circle cx="50" cy="50" r="40" stroke="url(#gradient2)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="37.68" class="transition-all duration-1000 ease-out"/>
+                <defs>
+                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#06b6d4"/>
+                    <stop offset="100%" stop-color="#8b5cf6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">85%</span>
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl font-semibold mb-2">OSINT</h3>
-          <p class="text-neutral-600 dark:text-neutral-300 text-center">Open-source intelligence gathering</p>
+          <h3 class="text-lg font-semibold text-center mb-2">OSINT</h3>
         </div>
+
         <!-- Linux Systems -->
-        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="300">
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
           <div class="relative mb-4">
-            <svg width="96" height="96" class="progress-circle" viewBox="0 0 100 100">
-              <circle class="progress-bg" cx="50" cy="50" r="45" stroke-width="10" fill="none"/>
-              <circle class="progress-bar" data-value="85" cx="50" cy="50" r="45" stroke="#0e7490" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="282.743" stroke-dashoffset="282.743"/>
-            </svg>
-            <span class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-primary-700 dark:text-primary-300">85%</span>
+            <div class="w-20 h-20 mx-auto">
+              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
+                <circle cx="50" cy="50" r="40" stroke="url(#gradient3)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="12.56" class="transition-all duration-1000 ease-out"/>
+                <defs>
+                  <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#06b6d4"/>
+                    <stop offset="100%" stop-color="#8b5cf6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">95%</span>
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl font-semibold mb-2">Linux Systems</h3>
-          <p class="text-neutral-600 dark:text-neutral-300 text-center">Kali Linux and security distributions</p>
+          <h3 class="text-lg font-semibold text-center mb-2">Linux Systems</h3>
         </div>
+
         <!-- CTF Challenges -->
-        <div class="flex flex-col items-center" data-aos="fade-up" data-aos-delay="400">
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
           <div class="relative mb-4">
-            <svg width="96" height="96" class="progress-circle" viewBox="0 0 100 100">
-              <circle class="progress-bg" cx="50" cy="50" r="45" stroke-width="10" fill="none"/>
-              <circle class="progress-bar" data-value="95" cx="50" cy="50" r="45" stroke="#7c3aed" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="282.743" stroke-dashoffset="282.743"/>
-            </svg>
-            <span class="absolute inset-0 flex items-center justify-center text-2xl font-bold text-accent-600 dark:text-accent-500">95%</span>
+            <div class="w-20 h-20 mx-auto">
+              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
+                <circle cx="50" cy="50" r="40" stroke="url(#gradient4)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="12.56" class="transition-all duration-1000 ease-out"/>
+                <defs>
+                  <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#06b6d4"/>
+                    <stop offset="100%" stop-color="#8b5cf6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">95%</span>
+              </div>
+            </div>
           </div>
-          <h3 class="text-xl font-semibold mb-2">CTF Challenges</h3>
-          <p class="text-neutral-600 dark:text-neutral-300 text-center">Competitive cybersecurity challenges</p>
+          <h3 class="text-lg font-semibold text-center mb-2">CTF Challenges</h3>
+        </div>
+
+        <!-- Web Exploitation -->
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
+          <div class="relative mb-4">
+            <div class="w-20 h-20 mx-auto">
+              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
+                <circle cx="50" cy="50" r="40" stroke="url(#gradient5)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="50.24" class="transition-all duration-1000 ease-out"/>
+                <defs>
+                  <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#06b6d4"/>
+                    <stop offset="100%" stop-color="#8b5cf6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">80%</span>
+              </div>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold text-center mb-2">Web Exploitation</h3>
+        </div>
+
+        <!-- Network Security -->
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
+          <div class="relative mb-4">
+            <div class="w-20 h-20 mx-auto">
+              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
+                <circle cx="50" cy="50" r="40" stroke="url(#gradient6)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="62.8" class="transition-all duration-1000 ease-out"/>
+                <defs>
+                  <linearGradient id="gradient6" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#06b6d4"/>
+                    <stop offset="100%" stop-color="#8b5cf6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">75%</span>
+              </div>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold text-center mb-2">Network Security</h3>
+        </div>
+
+        <!-- Vulnerability Assessment -->
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
+          <div class="relative mb-4">
+            <div class="w-20 h-20 mx-auto">
+              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
+                <circle cx="50" cy="50" r="40" stroke="url(#gradient7)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="37.68" class="transition-all duration-1000 ease-out"/>
+                <defs>
+                  <linearGradient id="gradient7" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#06b6d4"/>
+                    <stop offset="100%" stop-color="#8b5cf6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">85%</span>
+              </div>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold text-center mb-2">Vulnerability Assessment</h3>
+        </div>
+
+        <!-- Security Tools -->
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
+          <div class="relative mb-4">
+            <div class="w-20 h-20 mx-auto">
+              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
+                <circle cx="50" cy="50" r="40" stroke="url(#gradient8)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="25.12" class="transition-all duration-1000 ease-out"/>
+                <defs>
+                  <linearGradient id="gradient8" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#06b6d4"/>
+                    <stop offset="100%" stop-color="#8b5cf6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">90%</span>
+              </div>
+            </div>
+          </div>
+          <h3 class="text-lg font-semibold text-center mb-2">Security Tools</h3>
         </div>
       </div>
     </div>
@@ -303,50 +342,54 @@
   <!-- Featured Projects -->
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <h2 class="text-4xl font-bold mb-4 text-gradient">Featured Work</h2>
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+          Featured Work
+        </h2>
         <p class="text-lg text-neutral-600 dark:text-neutral-300">Recent achievements and projects</p>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Card 1 -->
-        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow tilt transform hover:scale-105" data-aos="fade-up" data-aos-delay="100">
-          <div class="h-48 gradient-bg flex items-center justify-center">
+        <!-- NCSC Finals -->
+        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105">
+          <div class="h-48 bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center">
             <i data-lucide="shield" class="h-16 w-16 text-white"></i>
           </div>
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">NCSC Finals</h3>
             <p class="text-neutral-600 dark:text-neutral-300 mb-4">Reached the finals of Jordan's National Cyber Security Competition</p>
-            <div class="flex gap-2">
-              <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm">CTF</span>
-              <span class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-700 dark:text-accent-300 rounded-full text-sm">Competition</span>
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-3 py-1 bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300 rounded-full text-sm">CTF</span>
+              <span class="px-3 py-1 bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300 rounded-full text-sm">Competition</span>
             </div>
           </div>
         </div>
-        <!-- Card 2 -->
-        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow tilt transform hover:scale-105" data-aos="fade-up" data-aos-delay="200">
-          <div class="h-48 gradient-bg flex items-center justify-center">
+
+        <!-- Hack The Box -->
+        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105">
+          <div class="h-48 bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center">
             <i data-lucide="terminal" class="h-16 w-16 text-white"></i>
           </div>
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">Hack The Box</h3>
             <p class="text-neutral-600 dark:text-neutral-300 mb-4">Solved complex web exploitation and OSINT challenges</p>
-            <div class="flex gap-2">
-              <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm">HTB</span>
-              <span class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-700 dark:text-accent-300 rounded-full text-sm">Web Exploitation</span>
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-3 py-1 bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300 rounded-full text-sm">HTB</span>
+              <span class="px-3 py-1 bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300 rounded-full text-sm">Web Exploitation</span>
             </div>
           </div>
         </div>
-        <!-- Card 3 -->
-        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow tilt transform hover:scale-105" data-aos="fade-up" data-aos-delay="300">
-          <div class="h-48 gradient-bg flex items-center justify-center">
+
+        <!-- Security Lab -->
+        <div class="bg-white dark:bg-neutral-800 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:scale-105">
+          <div class="h-48 bg-gradient-to-r from-cyan-500 to-purple-500 flex items-center justify-center">
             <i data-lucide="server" class="h-16 w-16 text-white"></i>
           </div>
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">Security Lab</h3>
             <p class="text-neutral-600 dark:text-neutral-300 mb-4">Built custom virtualized environment for penetration testing</p>
-            <div class="flex gap-2">
-              <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm">Virtualization</span>
-              <span class="px-3 py-1 bg-accent-100 dark:bg-accent-900 text-accent-700 dark:text-accent-300 rounded-full text-sm">Lab Setup</span>
+            <div class="flex gap-2 flex-wrap">
+              <span class="px-3 py-1 bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300 rounded-full text-sm">Virtualization</span>
+              <span class="px-3 py-1 bg-cyan-100 dark:bg-cyan-900 text-cyan-700 dark:text-cyan-300 rounded-full text-sm">Lab Setup</span>
             </div>
           </div>
         </div>
@@ -355,12 +398,12 @@
   </section>
 
   <!-- CTA Section -->
-  <section class="py-16 gradient-bg" data-aos="fade-up">
+  <section class="py-16 bg-gradient-to-r from-cyan-500 to-purple-500">
     <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
       <h2 class="text-4xl font-bold text-white mb-4">Ready to Secure Your Systems?</h2>
       <p class="text-xl text-white/90 mb-8">Let's discuss how I can help protect your digital assets</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="contact.html" class="inline-flex items-center px-8 py-3 bg-white text-primary-600 font-medium rounded-lg hover:bg-neutral-100 transition-colors">
+        <a href="contact.html" class="inline-flex items-center px-8 py-3 bg-white text-cyan-600 font-medium rounded-lg hover:bg-neutral-100 transition-colors">
           Get in Touch
         </a>
         <a href="about.html" class="inline-flex items-center px-8 py-3 border-2 border-white text-white font-medium rounded-lg hover:bg-white/10 transition-colors">
@@ -371,18 +414,18 @@
   </section>
 
   <!-- Footer -->
-  <footer class="py-8 bg-neutral-100 dark:bg-neutral-800" data-aos="fade-up">
+  <footer class="py-8 bg-neutral-100 dark:bg-neutral-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row justify-between items-center">
         <p class="text-neutral-600 dark:text-neutral-300">© 2024 Adam Daradkeh. All rights reserved.</p>
         <div class="flex gap-4 mt-4 md:mt-0">
-          <a href="https://github.com/daradkeh69" target="_blank" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          <a href="https://github.com/daradkeh69" target="_blank" rel="noopener noreferrer" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
             <i data-lucide="github" class="h-5 w-5"></i>
           </a>
-          <a href="https://www.linkedin.com/in/adam-daradkeh-814980326/" target="_blank" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          <a href="https://www.linkedin.com/in/adam-daradkeh-814980326/" target="_blank" rel="noopener noreferrer" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
             <i data-lucide="linkedin" class="h-5 w-5"></i>
           </a>
-          <a href="mailto:adampentest@outlook.com" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          <a href="mailto:adampentest@outlook.com" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
             <i data-lucide="mail" class="h-5 w-5"></i>
           </a>
         </div>
@@ -390,26 +433,18 @@
     </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
     // Initialize Lucide icons
     lucide.createIcons();
 
-    // Initialize AOS
-    AOS.init({
-      duration: 800,
-      once: true,
-      offset: 80,
-    });
-
-    // Theme toggle logic for both desktop and mobile
+    // Theme management
     function setTheme(theme) {
       const html = document.documentElement;
       html.classList.toggle('dark', theme === 'dark');
       localStorage.setItem('theme', theme);
       lucide.createIcons();
     }
+
     // Set initial theme
     const savedTheme = localStorage.getItem('theme') || 'dark';
     setTheme(savedTheme);
@@ -417,6 +452,7 @@
     // Theme toggle buttons
     const themeToggleDesktop = document.getElementById('theme-toggle-desktop');
     const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    
     [themeToggleDesktop, themeToggleMobile].forEach(btn => {
       if (btn) {
         btn.addEventListener('click', () => {
@@ -427,48 +463,30 @@
       }
     });
 
-    // Hamburger menu logic
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      mobileNav.classList.toggle('hidden');
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      menuIcon.classList.toggle('block');
+      closeIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('block');
     });
-    // Hide mobile nav on link click
-    mobileNav.querySelectorAll('a').forEach(link => {
+
+    // Hide mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileNav.classList.add('hidden');
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('hidden');
+        menuIcon.classList.add('block');
+        closeIcon.classList.add('hidden');
+        closeIcon.classList.remove('block');
       });
     });
-
-    // Interactive tilt effect for project cards
-    document.querySelectorAll('.tilt').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width/2;
-        const y = e.clientY - rect.top - rect.height/2;
-        card.style.transform = `scale(1.05) rotateY(${x/20}deg) rotateX(${-y/20}deg)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-
-    // Animate circular progress bars
-    function animateProgressBars() {
-      document.querySelectorAll('.progress-bar').forEach(bar => {
-        const value = +bar.getAttribute('data-value');
-        const radius = bar.getAttribute('r');
-        const circumference = 2 * Math.PI * radius;
-        const offset = circumference * (1 - value / 100);
-        setTimeout(() => {
-          bar.style.strokeDashoffset = offset;
-        }, 400);
-      });
-    }
-    window.addEventListener('DOMContentLoaded', animateProgressBars);
-    document.addEventListener('aos:in', animateProgressBars);
   </script>
 </body>
 </html>

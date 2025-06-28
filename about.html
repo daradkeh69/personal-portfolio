@@ -1,49 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About - Adam Daradkeh</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          colors: {
-            primary: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              500: '#06b6d4',
-              600: '#0891b2',
-              700: '#0e7490',
-              900: '#164e63',
-            },
-            accent: {
-              500: '#8b5cf6',
-              600: '#7c3aed',
-            },
-            neutral: {
-              50: '#fafafa',
-              100: '#f5f5f5',
-              800: '#262626',
-              900: '#171717',
-            }
-          },
           fontFamily: {
             sans: ['Inter', 'system-ui', 'sans-serif'],
           },
           animation: {
             'fade-in': 'fadeIn 0.6s ease-out',
             'slide-up': 'slideUp 0.6s ease-out',
-            'progress': 'progress 2s ease-out',
           }
         }
       }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -53,155 +32,123 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    @keyframes progress {
-      from { width: 0; }
+    html, body {
+      transition: background 0.6s cubic-bezier(.4,0,.2,1), color 0.6s cubic-bezier(.4,0,.2,1);
     }
-    /* Animated SVG background for hero */
-    .animated-svg-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
+    .mobile-nav {
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      transition: transform 0.2s ease-in-out;
+    }
+    .hover-scale:hover {
+      transform: scale(1.05);
+      transition: transform 0.2s ease-in-out;
+    }
+    .modal-open {
       overflow: hidden;
     }
-    /* Microinteraction hover effects */
-    .card-hover:hover, .card-hover:focus {
-      transform: translateY(-6px) scale(1.025);
-      box-shadow: 0 8px 32px 0 rgba(6,182,212,0.15), 0 1.5px 6px 0 rgba(139,92,246,0.09);
-      transition: transform 0.2s, box-shadow 0.2s;
-      z-index: 1;
+    .modal-content {
+      max-height: 70vh;
+      overflow-y: auto;
     }
-    .icon-hover:hover, .icon-hover:focus {
-      color: #8b5cf6 !important;
-      transform: scale(1.15) rotate(-8deg);
-      transition: color 0.2s, transform 0.2s;
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
     }
-    .btn-hover:hover, .btn-hover:focus {
-      opacity: 0.85;
-      transform: scale(1.04);
-      box-shadow: 0 4px 16px 0 rgba(6,182,212,0.10);
-      transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+    .modal-content::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
     }
-    .gradient-bg {
-      background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+    .modal-content::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
     }
-    .text-gradient {
-      background: linear-gradient(135deg, #06b6d4, #8b5cf6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .glass {
-      backdrop-filter: blur(10px);
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .dark .glass {
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .skill-bar {
-      animation: progress 2s ease-out;
+    .modal-content::-webkit-scrollbar-thumb:hover {
+      background: #555;
     }
   </style>
 </head>
 
 <body class="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white transition-colors duration-300">
   <!-- Navigation -->
-  <nav class="fixed top-0 w-full z-50 glass">
+  <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/80 dark:bg-neutral-900/80 border-b border-neutral-200 dark:border-neutral-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
-        <div class="flex-shrink-0">
-          <a href="index.html" class="text-2xl font-bold text-gradient">Adam</a>
+        <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+          Adam
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Home</a>
+          <a href="about.html" class="text-cyan-600 dark:text-cyan-400 font-medium">About</a>
+          <a href="contact.html" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Contact</a>
+          <button id="theme-toggle-desktop" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors ml-4">
+            <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
+            <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
+          </button>
         </div>
-        <div class="hidden md:block">
-          <div class="ml-10 flex items-baseline space-x-8">
-            <a href="index.html" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Home</a>
-            <a href="about.html" class="text-primary-600 dark:text-primary-400 font-medium">About</a>
-            <a href="contact.html" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Contact</a>
-          </div>
+
+        <!-- Mobile Navigation -->
+        <div class="md:hidden flex items-center space-x-2">
+          <button id="theme-toggle-mobile" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
+            <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
+          </button>
+          <button id="mobile-menu-toggle" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <i data-lucide="menu" class="h-6 w-6 block" id="menu-icon"></i>
+            <i data-lucide="x" class="h-6 w-6 hidden" id="close-icon"></i>
+          </button>
         </div>
-        <button id="theme-toggle" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
-          <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
-          <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
-        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="md:hidden fixed inset-0 top-16 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md z-40 hidden">
+      <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <a href="index.html" class="text-2xl font-bold text-neutral-600 dark:text-neutral-300">Home</a>
+        <a href="about.html" class="text-2xl font-bold text-cyan-600 dark:text-cyan-400">About</a>
+        <a href="contact.html" class="text-2xl font-bold text-neutral-600 dark:text-neutral-300">Contact</a>
       </div>
     </div>
   </nav>
 
   <!-- About Hero -->
   <section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-    <!-- Animated SVG background -->
-    <div class="animated-svg-bg">
-      <svg width="100%" height="100%" viewBox="0 0 1440 400" preserveAspectRatio="none" style="position:absolute;top:0;left:0;">
-        <defs>
-          <linearGradient id="aboutHeroGradient" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#06b6d4" />
-            <stop offset="100%" stop-color="#8b5cf6" />
-          </linearGradient>
-        </defs>
-        <!-- Original circles, now move faster -->
-        <circle cx="350" cy="110" r="60" fill="url(#aboutHeroGradient)" opacity="0.18">
-          <animate attributeName="cx" values="350;400;350" dur="6s" repeatCount="indefinite"/>
-          <animate attributeName="cy" values="110;130;110" dur="5s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="1100" cy="170" r="38" fill="#8b5cf6" opacity="0.13">
-          <animate attributeName="cy" values="170;200;170" dur="7s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="720" cy="260" r="50" fill="#06b5cf6" opacity="0.10">
-          <animate attributeName="r" values="50;65;50" dur="6s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="250" cy="300" r="18" fill="#8b5cf6" opacity="0.10">
-          <animate attributeName="cy" values="300;270;300" dur="4s" repeatCount="indefinite"/>
-        </circle>
-        <!-- 3 new circles, different sizes/colors/movement -->
-        <circle cx="600" cy="80" r="28" fill="#8b5cf6" opacity="0.12">
-          <animate attributeName="cx" values="600;700;600" dur="5s" repeatCount="indefinite"/>
-          <animate attributeName="cy" values="80;120;80" dur="4s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="1300" cy="320" r="22" fill="#06b6d4" opacity="0.13">
-          <animate attributeName="cy" values="320;350;320" dur="3.5s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="900" cy="60" r="35" fill="#8b5cf6" opacity="0.09">
-          <animate attributeName="cx" values="900;950;900" dur="4.5s" repeatCount="indefinite"/>
-          <animate attributeName="cy" values="60;100;60" dur="3.5s" repeatCount="indefinite"/>
-        </circle>
-      </svg>
-    </div>
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 animate-pulse"></div>
     <div class="max-w-7xl mx-auto relative z-10">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div class="animate-slide-up">
-          <h1 class="text-5xl font-bold mb-6 text-gradient">About Me</h1>
+        <div class="space-y-6">
+          <h1 class="text-5xl font-bold bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+            About Me
+          </h1>
           <div class="space-y-6 text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed">
             <p>
-              Hello! I'm <span class="font-semibold text-primary-600 dark:text-primary-400">Adam Daradkeh</span>, 
-              a passionate IT student studying BTEC IT in Jordan. I'm deeply interested in cybersecurity, 
-              ethical hacking, and competitive Capture The Flag (CTF) challenges.
+              Hello! I'm <span class="font-semibold text-cyan-600 dark:text-cyan-400">Adam Daradkeh</span>, a
+              passionate IT student studying BTEC IT in Jordan. I'm deeply interested in cybersecurity, ethical
+              hacking, and competitive Capture The Flag (CTF) challenges.
             </p>
             <p>
-              I specialize in OSINT and web exploitation, with strong progress on platforms like Hack The Box. 
-              I've qualified for the National Cyber Security Competition finals in Jordan (NCSC), demonstrating 
-              my commitment to excellence in cybersecurity.
+              I specialize in OSINT and web exploitation, with strong progress on platforms like Hack The Box. I've
+              qualified for the National Cyber Security Competition finals in Jordan (NCSC), demonstrating my
+              commitment to excellence in cybersecurity.
             </p>
             <p>
-              My goal is to build a cybersecurity business, offering penetration testing and vulnerability 
-              assessments to help organizations secure their digital presence. I believe in continuous learning 
-              and staying ahead of emerging threats.
+              My goal is to build a cybersecurity business, offering penetration testing and vulnerability
+              assessments to help organizations secure their digital presence. I believe in continuous learning and
+              staying ahead of emerging threats.
             </p>
           </div>
-          <div class="mt-8">
-            <a href="contact.html" class="inline-flex items-center px-6 py-3 gradient-bg text-white font-medium rounded-lg btn-hover hover:opacity-90 transition-opacity">
-              Get in Touch
-              <i data-lucide="arrow-right" class="ml-2 h-4 w-4 icon-hover"></i>
-            </a>
-          </div>
+          <a href="contact.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium rounded-lg hover:opacity-90 transition-opacity">
+            Get in Touch
+            <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+          </a>
         </div>
         <div class="flex justify-center">
           <div class="relative">
-            <div class="w-80 h-96 rounded-2xl gradient-bg p-2">
-              <img src="img/CTF.jpeg" class="w-full h-full rounded-xl object-cover" loading="lazy" width="320" height="384">
+            <div class="w-80 h-96 rounded-2xl bg-gradient-to-r from-cyan-500 to-purple-500 p-2">
+              <img src="img/CTF.jpeg" alt="Adam Daradkeh" class="w-full h-full rounded-xl object-cover">
             </div>
           </div>
         </div>
@@ -213,47 +160,58 @@
   <section class="py-16 bg-neutral-50 dark:bg-neutral-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold mb-4 text-gradient">Technical Skills</h2>
+        <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+          Technical Skills
+        </h2>
         <p class="text-lg text-neutral-600 dark:text-neutral-300">My expertise and proficiency levels</p>
       </div>
-      <div class="grid md:grid-cols-2 gap-12">
+      <div class="grid md:grid-cols-2 gap-12 mb-16">
         <div>
           <h3 class="text-2xl font-semibold mb-6">Cybersecurity</h3>
           <div class="space-y-6">
             <div>
               <div class="flex justify-between mb-2">
                 <span class="font-medium">Penetration Testing</span>
-                <span class="text-primary-600 dark:text-primary-400">90%</span>
+                <span class="text-cyan-600 dark:text-cyan-400">90%</span>
               </div>
               <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
-                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 90%"></div>
+                <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 90%"></div>
               </div>
             </div>
             <div>
               <div class="flex justify-between mb-2">
                 <span class="font-medium">OSINT</span>
-                <span class="text-primary-600 dark:text-primary-400">85%</span>
+                <span class="text-cyan-600 dark:text-cyan-400">85%</span>
               </div>
               <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
-                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 85%"></div>
+                <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 85%"></div>
               </div>
             </div>
             <div>
               <div class="flex justify-between mb-2">
                 <span class="font-medium">Web Exploitation</span>
-                <span class="text-primary-600 dark:text-primary-400">80%</span>
+                <span class="text-cyan-600 dark:text-cyan-400">80%</span>
               </div>
               <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
-                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 80%"></div>
+                <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 80%"></div>
               </div>
             </div>
             <div>
               <div class="flex justify-between mb-2">
                 <span class="font-medium">Network Security</span>
-                <span class="text-primary-600 dark:text-primary-400">75%</span>
+                <span class="text-cyan-600 dark:text-cyan-400">75%</span>
               </div>
               <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
-                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 75%"></div>
+                <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 75%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Security Automation</span>
+                <span class="text-cyan-600 dark:text-cyan-400">80%</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 80%"></div>
               </div>
             </div>
           </div>
@@ -264,39 +222,126 @@
             <div>
               <div class="flex justify-between mb-2">
                 <span class="font-medium">Linux Systems</span>
-                <span class="text-primary-600 dark:text-primary-400">95%</span>
+                <span class="text-cyan-600 dark:text-cyan-400">95%</span>
               </div>
               <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
-                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 95%"></div>
+                <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 95%"></div>
               </div>
             </div>
             <div>
               <div class="flex justify-between mb-2">
                 <span class="font-medium">Scripting (Bash/Python)</span>
-                <span class="text-primary-600 dark:text-primary-400">80%</span>
+                <span class="text-cyan-600 dark:text-cyan-400">80%</span>
               </div>
               <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
-                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 80%"></div>
+                <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 80%"></div>
               </div>
             </div>
             <div>
               <div class="flex justify-between mb-2">
                 <span class="font-medium">Hardware & Systems</span>
-                <span class="text-primary-600 dark:text-primary-400">90%</span>
+                <span class="text-cyan-600 dark:text-cyan-400">90%</span>
               </div>
               <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
-                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 90%"></div>
+                <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 90%"></div>
               </div>
             </div>
             <div>
               <div class="flex justify-between mb-2">
                 <span class="font-medium">Virtualization</span>
-                <span class="text-primary-600 dark:text-primary-400">85%</span>
+                <span class="text-cyan-600 dark:text-cyan-400">85%</span>
               </div>
               <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
-                <div class="skill-bar gradient-bg h-2 rounded-full" style="width: 85%"></div>
+                <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 85%"></div>
               </div>
             </div>
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Security Tools</span>
+                <span class="text-cyan-600 dark:text-cyan-400">90%</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2">
+                <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 90%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Programming Languages Section -->
+      <div class="mt-16">
+        <h3 class="text-2xl font-semibold mb-8 text-center">Programming Languages & Systems</h3>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Python -->
+          <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <div class="flex justify-between items-center mb-3">
+              <h4 class="text-lg font-semibold">Python</h4>
+              <span class="text-cyan-600 dark:text-cyan-400 font-bold">80%</span>
+            </div>
+            <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2 mb-3">
+              <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 80%"></div>
+            </div>
+            <p class="text-sm text-neutral-600 dark:text-neutral-300">Automation, scripting, security tools development</p>
+          </div>
+
+          <!-- Linux -->
+          <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <div class="flex justify-between items-center mb-3">
+              <h4 class="text-lg font-semibold">Linux (Kali, Ubuntu)</h4>
+              <span class="text-cyan-600 dark:text-cyan-400 font-bold">95%</span>
+            </div>
+            <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2 mb-3">
+              <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 95%"></div>
+            </div>
+            <p class="text-sm text-neutral-600 dark:text-neutral-300">CLI proficiency, scripting, pentesting with Nmap, Burp Suite, Metasploit, Wireshark, Aircrack-ng, John the Ripper, Hashcat, SQLmap, Gobuster</p>
+          </div>
+
+          <!-- HTML/CSS -->
+          <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <div class="flex justify-between items-center mb-3">
+              <h4 class="text-lg font-semibold">HTML/CSS</h4>
+              <span class="text-cyan-600 dark:text-cyan-400 font-bold">85%</span>
+            </div>
+            <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2 mb-3">
+              <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 85%"></div>
+            </div>
+            <p class="text-sm text-neutral-600 dark:text-neutral-300">Web development, UI/UX design, responsive layouts</p>
+          </div>
+
+          <!-- Tailwind CSS -->
+          <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <div class="flex justify-between items-center mb-3">
+              <h4 class="text-lg font-semibold">Tailwind CSS</h4>
+              <span class="text-cyan-600 dark:text-cyan-400 font-bold">90%</span>
+            </div>
+            <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2 mb-3">
+              <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 90%"></div>
+            </div>
+            <p class="text-sm text-neutral-600 dark:text-neutral-300">Modern CSS framework, utility-first design</p>
+          </div>
+
+          <!-- JavaScript -->
+          <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <div class="flex justify-between items-center mb-3">
+              <h4 class="text-lg font-semibold">JavaScript</h4>
+              <span class="text-cyan-600 dark:text-cyan-400 font-bold">75%</span>
+            </div>
+            <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2 mb-3">
+              <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 75%"></div>
+            </div>
+            <p class="text-sm text-neutral-600 dark:text-neutral-300">Web applications, automation, DOM manipulation</p>
+          </div>
+
+          <!-- Bash -->
+          <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+            <div class="flex justify-between items-center mb-3">
+              <h4 class="text-lg font-semibold">Bash</h4>
+              <span class="text-cyan-600 dark:text-cyan-400 font-bold">85%</span>
+            </div>
+            <div class="w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-2 mb-3">
+              <div class="bg-gradient-to-r from-cyan-500 to-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" style="width: 85%"></div>
+            </div>
+            <p class="text-sm text-neutral-600 dark:text-neutral-300">System administration, automation, penetration testing scripts</p>
           </div>
         </div>
       </div>
@@ -307,125 +352,220 @@
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold mb-4 text-gradient">Achievements</h2>
+        <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+          Achievements
+        </h2>
         <p class="text-lg text-neutral-600 dark:text-neutral-300">Key milestones in my cybersecurity journey</p>
       </div>
       <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg card-hover transition-transform transition-shadow">
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <div class="flex items-center mb-4">
-            <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-4">
-              <i data-lucide="trophy" class="h-6 w-6 text-white icon-hover"></i>
+            <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg flex items-center justify-center mr-4">
+              <i data-lucide="trophy" class="h-6 w-6 text-white"></i>
             </div>
             <h3 class="text-xl font-semibold">NCSC Finalist</h3>
           </div>
           <p class="text-neutral-600 dark:text-neutral-300">
-            Reached the finals of Jordan's National Cyber Security Competition, 
-            demonstrating advanced skills in cybersecurity challenges.
+            Reached the finals of Jordan's National Cyber Security Competition, demonstrating advanced skills in cybersecurity challenges.
           </p>
         </div>
-        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg card-hover transition-transform transition-shadow">
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <div class="flex items-center mb-4">
-            <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-4">
-              <i data-lucide="target" class="h-6 w-6 text-white icon-hover"></i>
+            <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-lg flex items-center justify-center mr-4">
+              <i data-lucide="target" class="h-6 w-6 text-white"></i>
             </div>
             <h3 class="text-xl font-semibold">HTB Progress</h3>
           </div>
           <p class="text-neutral-600 dark:text-neutral-300">
-            Significant progress on Hack The Box platform, solving complex 
-            challenges in web exploitation and OSINT categories.
+            Significant progress on Hack The Box platform, solving complex challenges in web exploitation and OSINT categories.
           </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Certifications -->
-  <section class="py-16 bg-neutral-50 dark:bg-neutral-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold mb-4 text-gradient">Certifications</h2>
-        <p class="text-lg text-neutral-600 dark:text-neutral-300">Professional development and continuous learning</p>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center card-hover transition-transform transition-shadow">
-          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="award" class="h-8 w-8 text-white icon-hover"></i>
-          </div>
-          <h3 class="font-semibold mb-2">CompTIA A+</h3>
-          <p class="text-sm text-neutral-600 dark:text-neutral-300">Hardware & Software Fundamentals</p>
-          <p class="text-xs text-primary-600 dark:text-primary-400 mt-2">Completed 2024</p>
-        </div>
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center card-hover transition-transform transition-shadow">
-          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="shield" class="h-8 w-8 text-white icon-hover"></i>
-          </div>
-          <h3 class="font-semibold mb-2">CompTIA Security+</h3>
-          <p class="text-sm text-neutral-600 dark:text-neutral-300">Core Cybersecurity Skills</p>
-          <p class="text-xs text-primary-600 dark:text-primary-400 mt-2">Completed 2025</p>
-        </div>
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center card-hover transition-transform transition-shadow">
-          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="code" class="h-8 w-8 text-white icon-hover"></i>
-          </div>
-          <h3 class="font-semibold mb-2">Ethical Hacking</h3>
-          <p class="text-sm text-neutral-600 dark:text-neutral-300">Cisco Penetration Testing</p>
-          <p class="text-xs text-primary-600 dark:text-primary-400 mt-2">Completed 2024</p>
-        </div>
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg text-center card-hover transition-transform transition-shadow">
-          <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4">
-            <i data-lucide="flag" class="h-8 w-8 text-white icon-hover"></i>
-          </div>
-          <h3 class="font-semibold mb-2">CTF Finals</h3>
-          <p class="text-sm text-neutral-600 dark:text-neutral-300">NCSC Competition</p>
-          <p class="text-xs text-primary-600 dark:text-primary-400 mt-2">2024</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Certificates Gallery -->
+  <section class="py-16 bg-neutral-50 dark:bg-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+          Certifications
+        </h2>
+        <p class="text-lg text-neutral-600 dark:text-neutral-300">
+          Professional certifications and achievements
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- CompTIA A+ -->
+        <div class="group bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer relative overflow-hidden certificate-card" 
+             data-cert-id="1" 
+             data-cert-title="CompTIA A+" 
+             data-cert-issuer="CompTIA" 
+             data-cert-date="2024" 
+             data-cert-description="Hardware & Software Fundamentals" 
+             data-cert-credential="18468128-33"
+             data-cert-image="img/A+ Cert.JPG">
+          <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="award" class="h-8 w-8 text-white"></i>
+          </div>
+          <h3 class="font-semibold mb-2 text-center">CompTIA A+</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-300 text-center mb-2">Hardware & Software Fundamentals</p>
+          <p class="text-xs text-cyan-600 dark:text-cyan-400 text-center mb-4">CompTIA • 2024</p>
+          <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/90 to-purple-500/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <i data-lucide="eye" class="h-8 w-8 mx-auto mb-2"></i>
+              <p class="font-semibold">View Certificate</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CompTIA Security+ -->
+        <div class="group bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer relative overflow-hidden certificate-card" 
+             data-cert-id="2" 
+             data-cert-title="CompTIA Security+" 
+             data-cert-issuer="CompTIA" 
+             data-cert-date="2025" 
+             data-cert-description="Core Cybersecurity Skills" 
+             data-cert-credential="18510833-2560"
+             data-cert-image="img/Security+.jpeg">
+          <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="award" class="h-8 w-8 text-white"></i>
+          </div>
+          <h3 class="font-semibold mb-2 text-center">CompTIA Security+</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-300 text-center mb-2">Core Cybersecurity Skills</p>
+          <p class="text-xs text-cyan-600 dark:text-cyan-400 text-center mb-4">CompTIA • 2025</p>
+          <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/90 to-purple-500/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <i data-lucide="eye" class="h-8 w-8 mx-auto mb-2"></i>
+              <p class="font-semibold">View Certificate</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ethical Hacking -->
+        <div class="group bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer relative overflow-hidden certificate-card" 
+             data-cert-id="3" 
+             data-cert-title="Ethical Hacking" 
+             data-cert-issuer="Cisco" 
+             data-cert-date="2024" 
+             data-cert-description="Cisco Penetration Testing" 
+             data-cert-credential="CISCO-EH-2024-AD"
+             data-cert-image="img/Cisco.png">
+          <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="award" class="h-8 w-8 text-white"></i>
+          </div>
+          <h3 class="font-semibold mb-2 text-center">Ethical Hacking</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-300 text-center mb-2">Cisco Penetration Testing</p>
+          <p class="text-xs text-cyan-600 dark:text-cyan-400 text-center mb-4">Cisco • 2024</p>
+          <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/90 to-purple-500/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <i data-lucide="eye" class="h-8 w-8 mx-auto mb-2"></i>
+              <p class="font-semibold">View Certificate</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- NCSC Finalist -->
+        <div class="group bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer relative overflow-hidden certificate-card" 
+             data-cert-id="4" 
+             data-cert-title="NCSC Finalist" 
+             data-cert-issuer="Jordan NCSC" 
+             data-cert-date="2024" 
+             data-cert-description="National Cyber Security Competition" 
+             data-cert-image="img/NCSC.jpg">
+          <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i data-lucide="award" class="h-8 w-8 text-white"></i>
+          </div>
+          <h3 class="font-semibold mb-2 text-center">NCSC Finalist</h3>
+          <p class="text-sm text-neutral-600 dark:text-neutral-300 text-center mb-2">National Cyber Security Competition</p>
+          <p class="text-xs text-cyan-600 dark:text-cyan-400 text-center mb-4">Jordan NCSC • 2024</p>
+          <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/90 to-purple-500/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div class="text-white text-center">
+              <i data-lucide="eye" class="h-8 w-8 mx-auto mb-2"></i>
+              <p class="font-semibold">View Certificate</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificate Viewer Modal -->
+  <div id="certificate-modal" class="fixed inset-0 bg-black/80 z-[60] flex items-center justify-center p-4 hidden">
+    <div class="bg-white dark:bg-neutral-900 rounded-2xl max-w-2xl w-full modal-content" onclick="event.stopPropagation()">
+      <div class="p-4 border-b border-neutral-200 dark:border-neutral-700 flex justify-between items-center sticky top-0 bg-white dark:bg-neutral-900 rounded-t-2xl">
+        <div>
+          <h3 id="modal-cert-title" class="text-xl font-bold"></h3>
+          <p id="modal-cert-issuer" class="text-sm text-neutral-600 dark:text-neutral-300"></p>
+        </div>
+        <button id="close-modal" class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg transition-colors">
+          <i data-lucide="x" class="h-4 w-4"></i>
+        </button>
+      </div>
+      <div class="p-4">
+        <div class="mb-4">
+          <img id="modal-cert-image" src="img/CTF.jpeg" alt="" class="w-full h-auto rounded-lg shadow-lg">
+        </div>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <p class="font-semibold text-neutral-600 dark:text-neutral-400">Credential ID</p>
+            <p id="modal-cert-credential" class="font-mono text-xs"></p>
+          </div>
+          <div>
+            <p class="font-semibold text-neutral-600 dark:text-neutral-400">Issue Date</p>
+            <p id="modal-cert-date"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Services -->
   <section class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold mb-4 text-gradient">What I Do</h2>
+        <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+          What I Do
+        </h2>
         <p class="text-lg text-neutral-600 dark:text-neutral-300">Services and expertise I offer</p>
       </div>
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <div class="text-4xl mb-4">🛡️</div>
           <h3 class="text-xl font-semibold mb-4">Penetration Testing</h3>
           <p class="text-neutral-600 dark:text-neutral-300">
             Comprehensive security assessments to identify vulnerabilities in web applications and networks.
           </p>
         </div>
-        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <div class="text-4xl mb-4">🔍</div>
           <h3 class="text-xl font-semibold mb-4">OSINT Research</h3>
           <p class="text-neutral-600 dark:text-neutral-300">
             Open-source intelligence gathering and analysis for security assessments and investigations.
           </p>
         </div>
-        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <div class="text-4xl mb-4">🎯</div>
           <h3 class="text-xl font-semibold mb-4">CTF Training</h3>
           <p class="text-neutral-600 dark:text-neutral-300">
             Competitive cybersecurity challenge solving and training for aspiring ethical hackers.
           </p>
         </div>
-        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <div class="text-4xl mb-4">🐧</div>
           <h3 class="text-xl font-semibold mb-4">Linux Administration</h3>
           <p class="text-neutral-600 dark:text-neutral-300">
             System hardening, configuration, and security optimization for Linux environments.
           </p>
         </div>
-        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <div class="text-4xl mb-4">🧰</div>
           <h3 class="text-xl font-semibold mb-4">Security Tools</h3>
           <p class="text-neutral-600 dark:text-neutral-300">
             Expertise with industry-standard tools like Nmap, Burp Suite, Metasploit, and custom scripts.
           </p>
         </div>
-        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+        <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
           <div class="text-4xl mb-4">🎓</div>
           <h3 class="text-xl font-semibold mb-4">Security Education</h3>
           <p class="text-neutral-600 dark:text-neutral-300">
@@ -442,13 +582,13 @@
       <div class="flex flex-col md:flex-row justify-between items-center">
         <p class="text-neutral-600 dark:text-neutral-300">© 2024 Adam Daradkeh. All rights reserved.</p>
         <div class="flex gap-4 mt-4 md:mt-0">
-          <a href="https://github.com/daradkeh69" target="_blank" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          <a href="https://github.com/daradkeh69" target="_blank" rel="noopener noreferrer" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
             <i data-lucide="github" class="h-5 w-5"></i>
           </a>
-          <a href="https://www.linkedin.com/in/adam-daradkeh-814980326/" target="_blank" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          <a href="https://www.linkedin.com/in/adam-daradkeh-814980326/" target="_blank" rel="noopener noreferrer" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
             <i data-lucide="linkedin" class="h-5 w-5"></i>
           </a>
-          <a href="mailto:adampentest@outlook.com" class="text-neutral-600 dark:text-neutral-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+          <a href="mailto:adampentest@outlook.com" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
             <i data-lucide="mail" class="h-5 w-5"></i>
           </a>
         </div>
@@ -459,20 +599,95 @@
   <script>
     // Initialize Lucide icons
     lucide.createIcons();
-    
-    // Dark mode toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
-    
-    // Check for saved theme or default to light
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    html.classList.toggle('dark', savedTheme === 'dark');
-    
-    themeToggle.addEventListener('click', () => {
-      html.classList.toggle('dark');
-      const theme = html.classList.contains('dark') ? 'dark' : 'light';
+
+    // Theme management
+    function setTheme(theme) {
+      const html = document.documentElement;
+      html.classList.toggle('dark', theme === 'dark');
       localStorage.setItem('theme', theme);
       lucide.createIcons();
+    }
+
+    // Set initial theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    // Theme toggle buttons
+    const themeToggleDesktop = document.getElementById('theme-toggle-desktop');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    
+    [themeToggleDesktop, themeToggleMobile].forEach(btn => {
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const html = document.documentElement;
+          const theme = html.classList.contains('dark') ? 'light' : 'dark';
+          setTheme(theme);
+        });
+      }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      menuIcon.classList.toggle('block');
+      closeIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('block');
+    });
+
+    // Hide mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('hidden');
+        menuIcon.classList.add('block');
+        closeIcon.classList.add('hidden');
+        closeIcon.classList.remove('block');
+      });
+    });
+
+    // Certificate modal functionality
+    const certificateModal = document.getElementById('certificate-modal');
+    const closeModal = document.getElementById('close-modal');
+    const certificateCards = document.querySelectorAll('.certificate-card');
+
+    certificateCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const title = card.dataset.certTitle;
+        const issuer = card.dataset.certIssuer;
+        const date = card.dataset.certDate;
+        const description = card.dataset.certDescription;
+        const credential = card.dataset.certCredential;
+        const image = card.dataset.certImage;
+
+        document.getElementById('modal-cert-title').textContent = title;
+        document.getElementById('modal-cert-issuer').textContent = `${issuer} • ${date}`;
+        document.getElementById('modal-cert-credential').textContent = credential;
+        document.getElementById('modal-cert-date').textContent = date;
+        document.getElementById('modal-cert-image').src = image;
+        document.getElementById('modal-cert-image').alt = title;
+
+        certificateModal.classList.remove('hidden');
+        document.body.classList.add('modal-open');
+        lucide.createIcons();
+      });
+    });
+
+    closeModal.addEventListener('click', () => {
+      certificateModal.classList.add('hidden');
+      document.body.classList.remove('modal-open');
+    });
+
+    certificateModal.addEventListener('click', (e) => {
+      if (e.target === certificateModal) {
+        certificateModal.classList.add('hidden');
+        document.body.classList.remove('modal-open');
+      }
     });
   </script>
 </body>
