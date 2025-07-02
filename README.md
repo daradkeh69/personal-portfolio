@@ -1,4 +1,4 @@
-<h1 align="center">🌐 AdamHealth</h1>
+<h1 align="center">🌐 My Personal Website</h1>
 
 This is my personal website built using **HTML**, **Tailwind CSS**, and **JavaScript**.  
 It showcases my work, interests, and journey in **ethical hacking**, **CTFs**, and **web development**.
