@@ -13,7 +13,6 @@ It showcases my work, interests, and journey in **ethical hacking**, **CTFs**, a
   - About Me
   - Skills & Experience
   - Projects
-  - Feedback from mentors & colleagues
   - Contact info
 
 ---
