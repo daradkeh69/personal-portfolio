@@ -8,9 +8,8 @@
   <img src="https://img.shields.io/badge/Tailwind_CSS-2.0-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" />
   <img src="https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  <img src="https://img.shields.io/github/last-commit/daradkeh69/personal-portfolio" />
 </p>
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Last Commit](https://img.shields.io/github/last-commit/daradkeh69/AdamHealth)
 
 ---
 
