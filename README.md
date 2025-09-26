@@ -1,6 +1,5 @@
 <h1 align="center">🌐 My Personal Website</h1>
 
-<p align="center"><strong>Built with HTML, Tailwind CSS, and JavaScript</strong></p>
 <p align="center">Showcasing my journey in ethical hacking, CTFs, and web development</p>
 
 <p align="center">
