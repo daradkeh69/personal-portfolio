@@ -8,6 +8,8 @@
   <img src="https://img.shields.io/badge/Tailwind_CSS-2.0-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" />
   <img src="https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
 </p>
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Last Commit](https://img.shields.io/github/last-commit/daradkeh69/AdamHealth)
 
 ---
 
@@ -20,13 +22,6 @@
   - Skills & Experience  
   - Projects  
   - Contact Info
-
----
-
-## 👨‍💻 About Me
-
-I'm a cybersecurity specialist and CTF player with a strong passion for **OSINT**, **web exploitation**, and **ethical hacking**.  
-I also enjoy building clean, lightweight websites that reflect my skills and interests.
 
 ---
 
@@ -43,3 +38,18 @@ I also enjoy building clean, lightweight websites that reflect my skills and int
 This is a static site — no frameworks, databases, or backends were used.  
 Feel free to clone or fork this project for learning purposes.  
 Please give credit if you reuse any part of it.
+
+---
+
+📜 License
+
+This project is open-source and available for personal or educational use.
+Feel free to modify, improve, or share — but please give credit if reused.
+
+---
+
+## 👤 Author
+
+**Daradkeh**  
+[![Connect with me on LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](www.linkedin.com/in/daradkehh) • [GitHub](https://github.com/daradkeh69) 
+
