@@ -1,6 +1,6 @@
 <h1 align="center">🌐 My Personal Website</h1>
 
-<p align="center">Showcasing my journey in ethical hacking, CTFs, and web development</p>
+<p align="center">Showcasing my journey in Cyber Security and web development</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/HTML-5-orange?style=flat-square&logo=html5&logoColor=white" />
