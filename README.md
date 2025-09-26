@@ -25,6 +25,15 @@
 
 ---
 
+## 🚀 Getting Started
+
+```bash
+git clone https://github.com/daradkeh69/personal-portfolio.git
+cd personal-portfolio
+```
+
+---
+
 ### 🛠️ Tech Stack
 
 - **HTML5**  
