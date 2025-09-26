@@ -7,13 +7,14 @@
   <img src="https://img.shields.io/badge/HTML-5-orange?style=flat-square&logo=html5&logoColor=white" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-2.0-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" />
   <img src="https://img.shields.io/badge/JavaScript-ES6-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg" />
 </p>
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Last Commit](https://img.shields.io/github/last-commit/daradkeh69/AdamHealth)
 
 ---
 
-## 🚀 Features
+### 🚀 Features
 
 - ✅ Fully responsive layout built with Tailwind CSS  
 - ⚡ Clean UI and fast loading speed  
@@ -25,7 +26,7 @@
 
 ---
 
-## 🛠️ Tech Stack
+### 🛠️ Tech Stack
 
 - **HTML5**  
 - **Tailwind CSS**  
@@ -33,7 +34,7 @@
 
 ---
 
-## ⚠️ Notes
+### ⚠️ Notes
 
 This is a static site — no frameworks, databases, or backends were used.  
 Feel free to clone or fork this project for learning purposes.  
@@ -41,14 +42,14 @@ Please give credit if you reuse any part of it.
 
 ---
 
-📜 License
+### 📜 License
 
 This project is open-source and available for personal or educational use.
 Feel free to modify, improve, or share — but please give credit if reused.
 
 ---
 
-## 👤 Author
+### 👤 Author
 
 **Daradkeh**  
 [![Connect with me on LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin)](www.linkedin.com/in/daradkehh) • [GitHub](https://github.com/daradkeh69) 
