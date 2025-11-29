@@ -49,7 +49,7 @@
   </style>
 </head>
 
-<body class="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white transition-colors duration-300">
+<body class="min-h-screen flex flex-col bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white transition-colors duration-300">
   <!-- Navigation -->
   <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/80 dark:bg-neutral-900/80 border-b border-neutral-200 dark:border-neutral-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,7 +96,8 @@
   </nav>
 
   <!-- Contact Hero -->
-  <section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <main class="flex-1">
+  <section class="pt-32 pb-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 animate-pulse"></div>
     <div class="max-w-4xl mx-auto text-center relative z-10">
       <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
@@ -106,9 +107,9 @@
   </section>
 
   <!-- Contact Methods -->
-  <section class="py-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+  <section class="min-h-[60vh] flex items-center pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 w-full">
         <div class="bg-white dark:bg-neutral-800 p-8 rounded-xl shadow-lg text-center hover:shadow-xl transition-all duration-300 hover:scale-105">
           <div class="w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
             <i data-lucide="mail" class="h-8 w-8 text-white"></i>
@@ -126,7 +127,7 @@
           </div>
           <h3 class="text-xl font-semibold mb-2">LinkedIn</h3>
           <p class="text-neutral-600 dark:text-neutral-300 mb-4">Professional Network</p>
-          <a href="https://www.linkedin.com/in/adam-daradkeh-814980326/" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline">
+          <a href="https://www.linkedin.com/in/daradkehh/" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline">
             Connect
           </a>
         </div>
@@ -147,88 +148,24 @@
             <i data-lucide="map-pin" class="h-8 w-8 text-white"></i>
           </div>
           <h3 class="text-xl font-semibold mb-2">Location</h3>
-          <p class="text-neutral-600 dark:text-neutral-300 mb-4">Amman, Jordan</p>
-          <p class="text-cyan-600 dark:text-cyan-400">Remote Available</p>
+          <p class="mt-4 text-neutral-600 dark:text-neutral-300 mb-4">Amman, Jordan</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Info -->
-  <section class="py-16 bg-neutral-50 dark:bg-neutral-800">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-white dark:bg-neutral-900 rounded-2xl shadow-xl p-8 md:p-12">
-        <div class="text-center mb-8">
-          <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
-            Let's Work Together
-          </h2>
-          <p class="text-lg text-neutral-600 dark:text-neutral-300">
-            I'm currently available for cybersecurity consulting and penetration testing projects.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          <div>
-            <h3 class="text-xl font-semibold mb-4">What I Offer</h3>
-            <ul class="space-y-3 text-neutral-600 dark:text-neutral-300">
-              <li class="flex items-center">
-                <i data-lucide="check" class="h-5 w-5 text-cyan-600 dark:text-cyan-400 mr-3"></i>
-                Penetration Testing
-              </li>
-              <li class="flex items-center">
-                <i data-lucide="check" class="h-5 w-5 text-cyan-600 dark:text-cyan-400 mr-3"></i>
-                Vulnerability Assessments
-              </li>
-              <li class="flex items-center">
-                <i data-lucide="check" class="h-5 w-5 text-cyan-600 dark:text-cyan-400 mr-3"></i>
-                OSINT Research
-              </li>
-              <li class="flex items-center">
-                <i data-lucide="check" class="h-5 w-5 text-cyan-600 dark:text-cyan-400 mr-3"></i>
-                Security Consulting
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 class="text-xl font-semibold mb-4">Response Time</h3>
-            <div class="space-y-4">
-              <div class="flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-                <span class="text-neutral-600 dark:text-neutral-300">Email</span>
-                <span class="text-cyan-600 dark:text-cyan-400 font-medium">Within 24 hours</span>
-              </div>
-              <div class="flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-                <span class="text-neutral-600 dark:text-neutral-300">LinkedIn</span>
-                <span class="text-cyan-600 dark:text-cyan-400 font-medium">Within 12 hours</span>
-              </div>
-              <div class="flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-800 rounded-lg">
-                <span class="text-neutral-600 dark:text-neutral-300">Urgent Projects</span>
-                <span class="text-cyan-600 dark:text-cyan-400 font-medium">Same day</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center mt-8">
-          <a href="mailto:adampentest@outlook.com" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium rounded-lg hover:opacity-90 transition-opacity">
-            Start a Conversation
-            <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  </main>
 
   <!-- Footer -->
-  <footer class="py-8 bg-neutral-100 dark:bg-neutral-800">
+  <footer class="mt-auto py-8 bg-neutral-100 dark:bg-neutral-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row justify-between items-center">
-        <p class="text-neutral-600 dark:text-neutral-300">© 2024 Adam Daradkeh. All rights reserved.</p>
+        <p class="text-neutral-600 dark:text-neutral-300">© 2025 Adam Daradkeh</p>
         <div class="flex gap-4 mt-4 md:mt-0">
           <a href="https://github.com/daradkeh69" target="_blank" rel="noopener noreferrer" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
             <i data-lucide="github" class="h-5 w-5"></i>
           </a>
-          <a href="https://www.linkedin.com/in/adam-daradkeh-814980326/" target="_blank" rel="noopener noreferrer" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+          <a href="https://www.linkedin.com/in/daradkehh/" target="_blank" rel="noopener noreferrer" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
             <i data-lucide="linkedin" class="h-5 w-5"></i>
           </a>
           <a href="mailto:adampentest@outlook.com" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
