@@ -12,11 +12,11 @@
 
 ---
 
-### 🚀 Features
+### Features
 
-- ✅ Fully responsive layout built with Tailwind CSS  
-- ⚡ Clean UI and fast loading speed  
-- 📁 Sectioned content for:
+- Fully responsive layout built with Tailwind CSS  
+- Clean UI and fast loading speed  
+- Sectioned content for:
   - About Me  
   - Skills & Experience  
   - Projects  
@@ -24,7 +24,7 @@
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ```bash
 git clone https://github.com/daradkeh69/personal-portfolio.git
@@ -33,7 +33,7 @@ cd personal-portfolio
 
 ---
 
-### 🛠️ Tech Stack
+### Tech Stack
 
 - **HTML5**  
 - **Tailwind CSS**  
@@ -41,7 +41,7 @@ cd personal-portfolio
 
 ---
 
-### ⚠️ Notes
+### Notes
 
 This is a static site — no frameworks, databases, or backends were used.  
 Feel free to clone or fork this project for learning purposes.  
@@ -49,7 +49,7 @@ Please give credit if you reuse any part of it.
 
 ---
 
-### 📜 License
+### License
 
 This project is open-source and available for personal or educational use.
 Feel free to modify, improve, or share — but please give credit if reused.
