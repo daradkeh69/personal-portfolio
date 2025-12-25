@@ -40,6 +40,26 @@
     html, body {
       transition: background 0.6s cubic-bezier(.4,0,.2,1), color 0.6s cubic-bezier(.4,0,.2,1);
     }
+
+    /* Progress bars for skills */
+    .skill-row { display: flex; flex-direction: column; gap: 8px; }
+    .progress { width: 100%; height: 14px; background: rgba(0,0,0,0.06); border-radius: 9999px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg,#06b6d4,#8b5cf6); border-radius: 9999px; transition: width 0.8s cubic-bezier(.2,.8,.2,1); }
+    .skill-label { display:flex; justify-content:space-between; align-items:center; font-weight:600; }
+
+    /* Tooltip */
+    .tooltip { position: relative; }
+    .tooltip .tooltip-text {
+      position: absolute; left: 50%; transform: translateX(-50%); bottom: 140%; background: rgba(17,24,39,0.95); color: #fff; padding: 6px 8px; border-radius: 6px; font-size: 12px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out; transform-origin: bottom center; }
+    .tooltip:hover .tooltip-text, .tooltip:focus-within .tooltip-text { opacity: 1; transform: translateX(-50%) translateY(-6px); }
+
+    .mobile-friendly-img { width: 16rem; height: 16rem; }
+    @media (min-width: 640px) { .mobile-friendly-img { width: 18rem; height: 18rem; } }
+    @media (min-width: 1024px) { .mobile-friendly-img { width: 20rem; height: 20rem; } }
+
+    .social-icon { display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:8px; background:transparent; transition:background 0.15s ease, transform 0.15s ease; }
+    .social-icon:hover { background: rgba(6,182,212,0.08); transform: translateY(-3px); }
+
     .mobile-nav {
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
@@ -110,7 +130,7 @@
             Hi, I'm <span class="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">Adam</span>
           </h1>
           <p class="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed">
-            Cybersecurity is my thing. I'd say more, but I'd rather be doing it than writing about it.
+            Cybersecurity is my thing, I'd say more, but I'd rather be doing it than writing about it.
           </p>
           <div class="flex flex-col sm:flex-row gap-4">
             <a href="about.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium rounded-lg hover:opacity-90 transition-opacity">
@@ -122,13 +142,13 @@
             </a>
           </div>
           <div class="flex gap-4">
-            <a href="https://github.com/daradkeh69" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <a href="https://github.com/daradkeh69" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" aria-label="GitHub">
               <i data-lucide="github" class="h-6 w-6"></i>
             </a>
-            <a href="https://www.linkedin.com/in/daradkehh/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <a href="https://www.linkedin.com/in/daradkehh/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" aria-label="LinkedIn">
               <i data-lucide="linkedin" class="h-6 w-6"></i>
             </a>
-            <a href="mailto:adampentest@outlook.com" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <a href="mailto:adampentest@outlook.com" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" aria-label="Email">
               <i data-lucide="mail" class="h-6 w-6"></i>
             </a>
           </div>
@@ -137,7 +157,7 @@
           <div class="relative">
             <div class="w-80 h-80 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 p-2 animate-pulse">
               <div class="w-full h-full rounded-full bg-white dark:bg-neutral-900 p-2">
-                <img src="img/CTF.jpg" alt="Adam Daradkeh" class="w-full h-full rounded-full object-cover">
+                <img src="img/CTF.jpg" alt="Adam Daradkeh" class="w-full h-full rounded-full object-cover mobile-friendly-img">
               </div>
             </div>
           </div>
@@ -151,189 +171,111 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
-          Core Skills
+          Core Skills & Highlights
         </h2>
         <p class="text-lg text-neutral-600 dark:text-neutral-300">
-          Technologies and techniques I specialize in
+          Technologies, techniques and standout projects that define my work.
         </p>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-        <!-- Penetration Testing -->
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
-          <div class="relative mb-4">
-            <div class="w-20 h-20 mx-auto">
-              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
-                <circle cx="50" cy="50" r="40" stroke="url(#gradient)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="25.12" class="transition-all duration-1000 ease-out"/>
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#06b6d4"/>
-                    <stop offset="100%" stop-color="#8b5cf6"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">90%</span>
-              </div>
-            </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Skill item -->
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover-lift">
+          <div class="skill-label mb-2">
+            <span>Penetration Testing</span>
+            <span class="text-cyan-600 dark:text-cyan-400 font-bold">90%</span>
           </div>
-          <h3 class="text-lg font-semibold text-center mb-2">Penetration Testing</h3>
+          <div class="skill-row">
+            <div class="tooltip">
+              <div class="progress" aria-hidden="true">
+                <div class="progress-fill" style="width:90%"></div>
+              </div>
+              <div class="tooltip-text">Experienced with network, web and infrastructure pentests; custom tooling and reporting.</div>
+            </div>
+            <a href="projects.html#pentesting" class="mt-3 inline-block text-sm text-neutral-600 dark:text-neutral-300 hover:text-cyan-600">See related projects →</a>
+          </div>
         </div>
 
-        <!-- OSINT -->
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
-          <div class="relative mb-4">
-            <div class="w-20 h-20 mx-auto">
-              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
-                <circle cx="50" cy="50" r="40" stroke="url(#gradient2)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="37.68" class="transition-all duration-1000 ease-out"/>
-                <defs>
-                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#06b6d4"/>
-                    <stop offset="100%" stop-color="#8b5cf6"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">85%</span>
-              </div>
-            </div>
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover-lift">
+          <div class="skill-label mb-2">
+            <span>OSINT & Recon</span>
+            <span class="text-cyan-600 dark:text-cyan-400 font-bold">85%</span>
           </div>
-          <h3 class="text-lg font-semibold text-center mb-2">OSINT</h3>
+          <div class="skill-row">
+            <div class="tooltip">
+              <div class="progress" aria-hidden="true">
+                <div class="progress-fill" style="width:85%"></div>
+              </div>
+              <div class="tooltip-text">Automated and manual OSINT for scoped assessments and threat intel.</div>
+            </div>
+            <a href="projects.html#osint" class="mt-3 inline-block text-sm text-neutral-600 dark:text-neutral-300 hover:text-cyan-600">Example OSINT work →</a>
+          </div>
         </div>
 
-        <!-- Linux Systems -->
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
-          <div class="relative mb-4">
-            <div class="w-20 h-20 mx-auto">
-              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
-                <circle cx="50" cy="50" r="40" stroke="url(#gradient3)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="12.56" class="transition-all duration-1000 ease-out"/>
-                <defs>
-                  <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#06b6d4"/>
-                    <stop offset="100%" stop-color="#8b5cf6"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">95%</span>
-              </div>
-            </div>
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover-lift">
+          <div class="skill-label mb-2">
+            <span>Linux Systems & DevOps</span>
+            <span class="text-cyan-600 dark:text-cyan-400 font-bold">95%</span>
           </div>
-          <h3 class="text-lg font-semibold text-center mb-2">Linux Systems</h3>
+          <div class="skill-row">
+            <div class="tooltip">
+              <div class="progress" aria-hidden="true">
+                <div class="progress-fill" style="width:95%"></div>
+              </div>
+              <div class="tooltip-text">System hardening, scripting, automation and container workflows.</div>
+            </div>
+            <a href="projects.html#linux" class="mt-3 inline-block text-sm text-neutral-600 dark:text-neutral-300 hover:text-cyan-600">Related tools & scripts →</a>
+          </div>
         </div>
 
-        <!-- CTF Challenges -->
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
-          <div class="relative mb-4">
-            <div class="w-20 h-20 mx-auto">
-              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
-                <circle cx="50" cy="50" r="40" stroke="url(#gradient4)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="12.56" class="transition-all duration-1000 ease-out"/>
-                <defs>
-                  <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#06b6d4"/>
-                    <stop offset="100%" stop-color="#8b5cf6"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">95%</span>
-              </div>
-            </div>
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover-lift">
+          <div class="skill-label mb-2">
+            <span>CTF Challenges</span>
+            <span class="text-cyan-600 dark:text-cyan-400 font-bold">95%</span>
           </div>
-          <h3 class="text-lg font-semibold text-center mb-2">CTF Challenges</h3>
+          <div class="skill-row">
+            <div class="tooltip">
+              <div class="progress" aria-hidden="true">
+                <div class="progress-fill" style="width:95%"></div>
+              </div>
+              <div class="tooltip-text">Active competitor — reverse, pwn, forensics and web exploitation challenges.</div>
+            </div>
+            <a href="projects.html#ctf" class="mt-3 inline-block text-sm text-neutral-600 dark:text-neutral-300 hover:text-cyan-600">Selected write-ups →</a>
+          </div>
         </div>
 
-        <!-- Web Exploitation -->
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
-          <div class="relative mb-4">
-            <div class="w-20 h-20 mx-auto">
-              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
-                <circle cx="50" cy="50" r="40" stroke="url(#gradient5)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="50.24" class="transition-all duration-1000 ease-out"/>
-                <defs>
-                  <linearGradient id="gradient5" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#06b6d4"/>
-                    <stop offset="100%" stop-color="#8b5cf6"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">80%</span>
-              </div>
-            </div>
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover-lift">
+          <div class="skill-label mb-2">
+            <span>Web Exploitation</span>
+            <span class="text-cyan-600 dark:text-cyan-400 font-bold">80%</span>
           </div>
-          <h3 class="text-lg font-semibold text-center mb-2">Web Exploitation</h3>
+          <div class="skill-row">
+            <div class="tooltip">
+              <div class="progress" aria-hidden="true">
+                <div class="progress-fill" style="width:80%"></div>
+              </div>
+              <div class="tooltip-text">Burp Suite, manual code review, and common web vuln discovery.</div>
+            </div>
+            <a href="projects.html#web" class="mt-3 inline-block text-sm text-neutral-600 dark:text-neutral-300 hover:text-cyan-600">Web testing highlights →</a>
+          </div>
         </div>
 
-        <!-- Network Security -->
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
-          <div class="relative mb-4">
-            <div class="w-20 h-20 mx-auto">
-              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
-                <circle cx="50" cy="50" r="40" stroke="url(#gradient)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="25.12" class="transition-all duration-1000 ease-out"/>
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#06b6d4"/>
-                    <stop offset="100%" stop-color="#8b5cf6"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">90%</span>
-              </div>
-            </div>
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover-lift">
+          <div class="skill-label mb-2">
+            <span>Bug Bounty & Tooling</span>
+            <span class="text-cyan-600 dark:text-cyan-400 font-bold">90%</span>
           </div>
-          <h3 class="text-lg font-semibold text-center mb-2">Network Security</h3>
+          <div class="skill-row">
+            <div class="tooltip">
+              <div class="progress" aria-hidden="true">
+                <div class="progress-fill" style="width:90%"></div>
+              </div>
+              <div class="tooltip-text">Participation in coordinated disclosure and private programs.</div>
+            </div>
+            <a href="projects.html#tools" class="mt-3 inline-block text-sm text-neutral-600 dark:text-neutral-300 hover:text-cyan-600">Tools & findings →</a>
+          </div>
         </div>
 
-        <!-- Bug Hunting -->
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
-          <div class="relative mb-4">
-            <div class="w-20 h-20 mx-auto">
-              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
-                <circle cx="50" cy="50" r="40" stroke="url(#gradient2)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="37.68" class="transition-all duration-1000 ease-out"/>
-                <defs>
-                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#06b6d4"/>
-                    <stop offset="100%" stop-color="#8b5cf6"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">85%</span>
-              </div>
-            </div>
-          </div>
-          <h3 class="text-lg font-semibold text-center mb-2">Bug Hunting</h3>
-        </div>
-
-        <!-- Security Tools -->
-        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg">
-          <div class="relative mb-4">
-            <div class="w-20 h-20 mx-auto">
-              <svg class="w-20 h-20 transform -rotate-90" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="8" fill="none" class="text-neutral-200 dark:text-neutral-700"/>
-                <circle cx="50" cy="50" r="40" stroke="url(#gradient8)" stroke-width="8" fill="none" stroke-linecap="round" stroke-dasharray="251.2" stroke-dashoffset="25.12" class="transition-all duration-1000 ease-out"/>
-                <defs>
-                  <linearGradient id="gradient8" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stop-color="#06b6d4"/>
-                    <stop offset="100%" stop-color="#8b5cf6"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div class="absolute inset-0 flex items-center justify-center">
-                <span class="text-xl font-bold text-cyan-600 dark:text-cyan-400">90%</span>
-              </div>
-            </div>
-          </div>
-          <h3 class="text-lg font-semibold text-center mb-2">Security Tools</h3>
-        </div>
       </div>
     </div>
   </section>
