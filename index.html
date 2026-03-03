@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adam</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.6s ease-out',
+            'slide-up': 'slideUp 0.6s ease-out',
+            'float': 'float 6s ease-in-out infinite',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    html, body {
+      transition: background 0.6s cubic-bezier(.4,0,.2,1), color 0.6s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* Progress bars for skills */
+    .skill-row { display: flex; flex-direction: column; gap: 8px; }
+    .progress { width: 100%; height: 14px; background: rgba(0,0,0,0.06); border-radius: 9999px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg,#06b6d4,#8b5cf6); border-radius: 9999px; transition: width 0.8s cubic-bezier(.2,.8,.2,1); }
+    .skill-label { display:flex; justify-content:space-between; align-items:center; font-weight:600; }
+
+    /* Tooltip */
+    .tooltip { position: relative; }
+    .tooltip .tooltip-text {
+      position: absolute; left: 50%; transform: translateX(-50%); bottom: 140%; background: rgba(17,24,39,0.95); color: #fff; padding: 6px 8px; border-radius: 6px; font-size: 12px; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out; transform-origin: bottom center; }
+    .tooltip:hover .tooltip-text, .tooltip:focus-within .tooltip-text { opacity: 1; transform: translateX(-50%) translateY(-6px); }
+
+    .mobile-friendly-img { width: 16rem; height: 16rem; }
+    @media (min-width: 640px) { .mobile-friendly-img { width: 18rem; height: 18rem; } }
+    @media (min-width: 1024px) { .mobile-friendly-img { width: 20rem; height: 20rem; } }
+
+    .social-icon { display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:8px; background:transparent; transition:background 0.15s ease, transform 0.15s ease; }
+    .social-icon:hover { background: rgba(6,182,212,0.08); transform: translateY(-3px); }
+
+    .mobile-nav {
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      transition: transform 0.2s ease-in-out;
+    }
+    .hover-scale:hover {
+      transform: scale(1.05);
+      transition: transform 0.2s ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white transition-colors duration-300">
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 backdrop-blur-md bg-white/80 dark:bg-neutral-900/80 border-b border-neutral-200 dark:border-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+          Adam
+        </a>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="index.html" class="text-cyan-600 dark:text-cyan-400 font-medium">Home</a>
+          <a href="projects.html" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Projects</a>
+          <a href="about.html" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">About</a>
+          <a href="contact.html" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Contact</a>
+          <button id="theme-toggle-desktop" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors ml-4">
+            <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
+            <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="md:hidden flex items-center space-x-2">
+          <button id="theme-toggle-mobile" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <i data-lucide="sun" class="h-5 w-5 dark:hidden"></i>
+            <i data-lucide="moon" class="h-5 w-5 hidden dark:block"></i>
+          </button>
+          <button id="mobile-menu-toggle" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+            <i data-lucide="menu" class="h-6 w-6 block" id="menu-icon"></i>
+            <i data-lucide="x" class="h-6 w-6 hidden" id="close-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="md:hidden fixed inset-0 top-16 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-md z-40 hidden">
+      <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <a href="index.html" class="text-2xl font-bold text-cyan-600 dark:text-cyan-400">Home</a>
+        <a href="projects.html" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">Projects</a>
+        <a href="about.html" class="text-2xl font-bold text-neutral-600 dark:text-neutral-300">About</a>
+        <a href="contact.html" class="text-2xl font-bold text-neutral-600 dark:text-neutral-300">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative pt-24 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 animate-pulse"></div>
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <h1 class="text-5xl lg:text-6xl font-bold mt-16">
+            Hi, I'm <span class="bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">Adam</span>
+          </h1>
+          <p class="text-lg text-neutral-600 dark:text-neutral-300 leading-relaxed">
+            Cybersecurity is my thing, I'd say more, but I'd rather be doing it than writing about it.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="about.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium rounded-lg hover:opacity-90 transition-opacity">
+              Learn More
+              <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+            </a>
+            <a href="contact.html" class="inline-flex items-center px-6 py-3 border-2 border-cyan-500 text-cyan-600 dark:text-cyan-400 font-medium rounded-lg hover:bg-cyan-50 dark:hover:bg-cyan-900/20 transition-colors">
+              Get in Touch
+            </a>
+          </div>
+          <div class="flex gap-4">
+            <a href="https://github.com/daradkeh69" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" aria-label="GitHub">
+              <i data-lucide="github" class="h-6 w-6"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/daradkehh/" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" aria-label="LinkedIn">
+              <i data-lucide="linkedin" class="h-6 w-6"></i>
+            </a>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <div class="relative">
+            <div class="w-80 h-80 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 p-2 animate-pulse">
+              <div class="w-full h-full rounded-full bg-white dark:bg-neutral-900 p-2">
+                <img src="img/CTF.jpg" alt="Adam Daradkeh" class="w-full h-full rounded-full object-cover mobile-friendly-img">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="py-16 bg-neutral-50 dark:bg-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent">
+          Core Skills & Highlights
+        </h2>
+        <p class="text-lg text-neutral-600 dark:text-neutral-300">
+          Technologies, techniques and standout projects that define my work.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Skill item -->
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover-lift">
+          <div class="skill-label mb-2">
+            <span>Penetration Testing</span>
+            <span class="text-cyan-600 dark:text-cyan-400 font-bold">90%</span>
+          </div>
+          <div class="skill-row">
+            <div class="tooltip">
+              <div class="progress" aria-hidden="true">
+                <div class="progress-fill" style="width:90%"></div>
+              </div>
+              <div class="tooltip-text">Experienced with network, web and infrastructure pentests; custom tooling and reporting.</div>
+            </div>
+            <a href="projects.html#pentesting" class="mt-3 inline-block text-sm text-neutral-600 dark:text-neutral-300 hover:text-cyan-600">See related projects →</a>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover-lift">
+          <div class="skill-label mb-2">
+            <span>OSINT & Recon</span>
+            <span class="text-cyan-600 dark:text-cyan-400 font-bold">85%</span>
+          </div>
+          <div class="skill-row">
+            <div class="tooltip">
+              <div class="progress" aria-hidden="true">
+                <div class="progress-fill" style="width:85%"></div>
+              </div>
+              <div class="tooltip-text">Automated and manual OSINT for scoped assessments and threat intel.</div>
+            </div>
+            <a href="projects.html#osint" class="mt-3 inline-block text-sm text-neutral-600 dark:text-neutral-300 hover:text-cyan-600">Example OSINT work →</a>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover-lift">
+          <div class="skill-label mb-2">
+            <span>Linux Systems & DevOps</span>
+            <span class="text-cyan-600 dark:text-cyan-400 font-bold">95%</span>
+          </div>
+          <div class="skill-row">
+            <div class="tooltip">
+              <div class="progress" aria-hidden="true">
+                <div class="progress-fill" style="width:95%"></div>
+              </div>
+              <div class="tooltip-text">System hardening, scripting, automation and container workflows.</div>
+            </div>
+            <a href="projects.html#linux" class="mt-3 inline-block text-sm text-neutral-600 dark:text-neutral-300 hover:text-cyan-600">Related tools & scripts →</a>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover-lift">
+          <div class="skill-label mb-2">
+            <span>CTF Challenges</span>
+            <span class="text-cyan-600 dark:text-cyan-400 font-bold">95%</span>
+          </div>
+          <div class="skill-row">
+            <div class="tooltip">
+              <div class="progress" aria-hidden="true">
+                <div class="progress-fill" style="width:95%"></div>
+              </div>
+              <div class="tooltip-text">Active competitor — reverse, pwn, forensics and web exploitation challenges.</div>
+            </div>
+            <a href="projects.html#ctf" class="mt-3 inline-block text-sm text-neutral-600 dark:text-neutral-300 hover:text-cyan-600">Selected write-ups →</a>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover-lift">
+          <div class="skill-label mb-2">
+            <span>Web Exploitation</span>
+            <span class="text-cyan-600 dark:text-cyan-400 font-bold">80%</span>
+          </div>
+          <div class="skill-row">
+            <div class="tooltip">
+              <div class="progress" aria-hidden="true">
+                <div class="progress-fill" style="width:80%"></div>
+              </div>
+              <div class="tooltip-text">Burp Suite, manual code review, and common web vuln discovery.</div>
+            </div>
+            <a href="projects.html#web" class="mt-3 inline-block text-sm text-neutral-600 dark:text-neutral-300 hover:text-cyan-600">Web testing highlights →</a>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-neutral-900 p-6 rounded-xl shadow-lg hover-lift">
+          <div class="skill-label mb-2">
+            <span>Bug Bounty & Tooling</span>
+            <span class="text-cyan-600 dark:text-cyan-400 font-bold">90%</span>
+          </div>
+          <div class="skill-row">
+            <div class="tooltip">
+              <div class="progress" aria-hidden="true">
+                <div class="progress-fill" style="width:90%"></div>
+              </div>
+              <div class="tooltip-text">Participation in coordinated disclosure and private programs.</div>
+            </div>
+            <a href="projects.html#tools" class="mt-3 inline-block text-sm text-neutral-600 dark:text-neutral-300 hover:text-cyan-600">Tools & findings →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-gradient-to-r from-cyan-500 to-purple-500">
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-bold text-white mb-4">Have Questions About Me?</h2>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="contact.html" class="inline-flex items-center px-8 py-3 bg-white text-cyan-600 font-medium rounded-lg hover:bg-neutral-100 transition-colors">
+          Get in Touch
+        </a>
+        <a href="about.html" class="inline-flex items-center px-8 py-3 border-2 border-white text-white font-medium rounded-lg hover:bg-white/10 transition-colors">
+          Learn More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-neutral-100 dark:bg-neutral-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-neutral-600 dark:text-neutral-300">© 2025 Adam Daradkeh</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+          <a href="https://github.com/daradkeh69" target="_blank" rel="noopener noreferrer" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+            <i data-lucide="github" class="h-5 w-5"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/daradkehh/" target="_blank" rel="noopener noreferrer" class="text-neutral-600 dark:text-neutral-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+            <i data-lucide="linkedin" class="h-5 w-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Theme management
+    function setTheme(theme) {
+      const html = document.documentElement;
+      html.classList.toggle('dark', theme === 'dark');
+      localStorage.setItem('theme', theme);
+      lucide.createIcons();
+    }
+
+    // Set initial theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+
+    // Theme toggle buttons
+    const themeToggleDesktop = document.getElementById('theme-toggle-desktop');
+    const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+    
+    [themeToggleDesktop, themeToggleMobile].forEach(btn => {
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const html = document.documentElement;
+          const theme = html.classList.contains('dark') ? 'light' : 'dark';
+          setTheme(theme);
+        });
+      }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      menuIcon.classList.toggle('block');
+      closeIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('block');
+    });
+
+    // Hide mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('hidden');
+        menuIcon.classList.add('block');
+        closeIcon.classList.add('hidden');
+        closeIcon.classList.remove('block');
+      });
+    });
+  </script>
+</body>
+</html>
